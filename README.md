@@ -1,2 +1,2 @@
-# game_of_life
-A "Game of life" web application with Typescript, React, Vite and Tailwind
+# Game-of-life
+A "Game of life" web application with Typescript, React, Bun and Tailwind
