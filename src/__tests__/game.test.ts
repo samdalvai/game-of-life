@@ -14,6 +14,9 @@ test('Should initialize an alive cell', () => {
 
 test('Should initialize a 2x2 game board with dead cells', () => {
     const expectedCell: Cell = { state: 'dead'}
-    const expectedGameBoard: GameBoard = []
+    const expectedGameBoard: GameBoard = [
+        [expectedCell, expectedCell],
+        [expectedCell, expectedCell]
+    ]
     expect(initializeBoard(2,2)).toEqual(expectedGameBoard);
 })
