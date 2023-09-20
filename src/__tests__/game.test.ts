@@ -32,3 +32,10 @@ test('Should retrieve the cell with coordinates x: 0 and y: 0', () => {
     const expectedCell: Cell = { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } }
     expect(getCellByCoordinates(gameBoard, { xAxis: 0, yAxis: 0})).toEqual(expectedCell);
 })
+
+test('Should return null if for the given coordinates there is no cell', () => {
+    const gameBoard: GameBoard = initializeBoard(2, 2);
+    expect(getCellByCoordinates(gameBoard, { xAxis: 3, yAxis: 0})).toEqual(null);
+    expect(getCellByCoordinates(gameBoard, { xAxis: 0, yAxis: 3})).toEqual(null);
+    expect(getCellByCoordinates(gameBoard, { xAxis: 3, yAxis: 3})).toEqual(null);
+})

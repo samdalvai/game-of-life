@@ -21,7 +21,22 @@ export const initializeCell = (initialState: CellState, coordinates: Coordinates
 }
 
 export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordinates): Cell | null => {
+    if (gameBoard.length < coordinates.xAxis) {
+        return null
+    }
+
+    if (gameBoard[0].length < coordinates.yAxis) {
+        return null
+    }
+
     return { ...gameBoard[coordinates.xAxis][coordinates.yAxis] }
+}
+
+export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
+    const neighbors: Cell[] = []
+    const cellCoordinates: Coordinates = cell.coordinates;
+
+    //for (let i = )
 }
 
 /*
