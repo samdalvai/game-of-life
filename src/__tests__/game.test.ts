@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 import { initializeBoard, initializeCell } from "../core/game";
-import { Cell, GameBoard } from '../types/cell';
+import { Cell, GameBoard } from '../types/game';
 
 test('Should initialize a dead cell', () => {
     const expectedCell: Cell = { state: 'dead'}

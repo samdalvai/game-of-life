@@ -1,4 +1,4 @@
-import { Cell, CellState, GameBoard } from "../types/cell"
+import { Cell, CellState, GameBoard } from "../types/game"
 
 export const initializeBoard = (rows: number, columns: number): GameBoard => {
     const gameBoard: GameBoard = [];
@@ -12,8 +12,6 @@ export const initializeBoard = (rows: number, columns: number): GameBoard => {
 
         gameBoard.push(row);
     }
-
-    console.log(gameBoard)
 
     return gameBoard;
 }
