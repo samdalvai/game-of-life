@@ -34,9 +34,18 @@ export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordina
 
 export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
     const neighbors: Cell[] = []
-    const cellCoordinates: Coordinates = cell.coordinates;
+    const { xAxis, yAxis } = cell.coordinates;
 
-    //for (let i = )
+    for (let i = xAxis - 1; i < xAxis + 1; i++) {
+        for (let j = yAxis - 1; j < yAxis + 1; j++) {
+            const neighbor: Cell | null = getCellByCoordinates(gameBoard, { xAxis, yAxis })
+            if (neighbor) {
+                neighbors.push(neighbor);
+            }
+        }
+    }
+
+    return neighbors;
 }
 
 /*
