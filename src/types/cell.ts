@@ -1,8 +1,8 @@
 export type CellState = "dead" | "alive"
 
 export interface Coordinates {
-    x_axis: number;
-    y_axis: number;
+    xAxis: number;
+    yAxis: number;
 }
 
 export interface Cell {
