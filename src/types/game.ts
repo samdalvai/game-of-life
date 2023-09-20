@@ -1,7 +1,13 @@
 export type CellState = "dead" | "alive"
 
 export interface Cell {
-    state: CellState;
+    state: CellState
+    coordinates: Coordinates
+}
+
+export interface Coordinates {
+    xAxis: number
+    yAxis: number
 }
 
 export type GameBoard = Cell[][]
