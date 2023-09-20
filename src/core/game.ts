@@ -7,7 +7,7 @@ export const initializeBoard = (rows: number, columns: number): GameBoard => {
         const row = [];
 
         for (let j = 0; j < columns; j++) {
-            row.push(initializeCell('dead', { xAxis: i, yAxis: j}));
+            row.push(initializeCell('dead', { xAxis: i, yAxis: j }));
         }
 
         gameBoard.push(row);
@@ -20,8 +20,8 @@ export const initializeCell = (initialState: CellState, coordinates: Coordinates
     return { state: initialState, coordinates: coordinates };
 }
 
-export const getCellCoordinates = () => {
-    
+export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordinates): Cell | null => {
+    return { ...gameBoard[coordinates.xAxis][coordinates.yAxis] }
 }
 
 /*
