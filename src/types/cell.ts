@@ -9,3 +9,5 @@ export interface Cell {
     state: CellState;
     coordinates: Coordinates;
 }
+
+export type GameBoard = Cell[][]
