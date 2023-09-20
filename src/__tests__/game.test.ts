@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { initializeBoard, initializeCell, getCellByCoordinates } from "../core/game";
+import { initializeBoard, initializeCell, getCellByCoordinates, getCellNeighbours } from "../core/game";
 import { Cell, GameBoard } from '../types/game';
 
 test('Should initialize a dead cell', () => {
@@ -38,4 +38,29 @@ test('Should return null if for the given coordinates there is no cell', () => {
     expect(getCellByCoordinates(gameBoard, { xAxis: 3, yAxis: 0})).toEqual(null);
     expect(getCellByCoordinates(gameBoard, { xAxis: 0, yAxis: 3})).toEqual(null);
     expect(getCellByCoordinates(gameBoard, { xAxis: 3, yAxis: 3})).toEqual(null);
+})
+
+test('Should return the neighbours of a cell with 8 neighbors', () => {
+    const gameBoard: GameBoard = initializeBoard(3, 3);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } }
+    ]
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
+})
+
+test('Should return the neighbours of a cell with 3 neighbors', () => {
+    const gameBoard: GameBoard = initializeBoard(2, 2);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } }
+    ]
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
 })

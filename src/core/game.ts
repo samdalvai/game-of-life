@@ -21,11 +21,11 @@ export const initializeCell = (initialState: CellState, coordinates: Coordinates
 }
 
 export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordinates): Cell | null => {
-    if (gameBoard.length < coordinates.xAxis) {
+    if (gameBoard.length - 1 < coordinates.xAxis) {
         return null
     }
 
-    if (gameBoard[0].length < coordinates.yAxis) {
+    if (gameBoard[0].length - 1 < coordinates.yAxis) {
         return null
     }
 
@@ -36,10 +36,10 @@ export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
     const neighbors: Cell[] = []
     const { xAxis, yAxis } = cell.coordinates;
 
-    for (let i = xAxis - 1; i < xAxis + 1; i++) {
-        for (let j = yAxis - 1; j < yAxis + 1; j++) {
-            const neighbor: Cell | null = getCellByCoordinates(gameBoard, { xAxis, yAxis })
-            if (neighbor) {
+    for (let i = xAxis - 1; i <= xAxis + 1; i++) {
+        for (let j = yAxis - 1; j <= yAxis + 1; j++) {
+            const neighbor: Cell | null = getCellByCoordinates(gameBoard, { xAxis: i, yAxis: j })
+            if (neighbor && !(xAxis === i && yAxis === j)) {
                 neighbors.push(neighbor);
             }
         }
