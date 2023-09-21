@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { getCellNextState } from "../core/rules";
+import { getCellNextState, getNextBoardState } from "../core/rules";
 import { GameBoard } from '../types/game';
 
 test('Any live cell with two live neighbours lives on to the next generation.', () => {
@@ -126,4 +126,26 @@ test('Any dead cell with more than three live neighbours remains dead.', () => {
         ]
     ];
     expect(getCellNextState(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
+});
+
+test('A gameboard with only dead cells should not spawn any new cell.', () => {
+    const currentGameboard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+        ]
+    ];
+
+    expect(getNextBoardState(currentGameboard)).toEqual(currentGameboard);    
 });

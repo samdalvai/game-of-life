@@ -1,4 +1,5 @@
 import { Cell, CellState, Coordinates, GameBoard } from "../types/game";
+import { getCellNextState } from "./rules";
 
 export const initializeBoard = (rows: number, columns: number): GameBoard => {
     const gameBoard: GameBoard = [];
