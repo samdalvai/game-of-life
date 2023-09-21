@@ -21,3 +21,26 @@ export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState =>
 
     return 'dead';
 };
+
+export const getNextBoardState = (currentGameBoard: GameBoard): GameBoard => {
+    const nextGameBoard: GameBoard = [];
+
+    for (let i = 0; i < currentGameBoard.length; i++) {
+        const row = [];
+
+        for (let j = 0; j < currentGameBoard[0].length; j++) {
+            const currentCell: Cell = currentGameBoard[i][j];
+            const nextCellState: CellState = getCellNextState(currentGameBoard, currentCell);
+
+            if (currentCell.state !== nextCellState) {
+                row.push({ ...currentCell, state: nextCellState });
+            } else {
+                row.push({ ...currentCell });
+            }
+        }
+
+        nextGameBoard.push(row);
+    }
+
+    return nextGameBoard;
+};
