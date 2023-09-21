@@ -55,7 +55,37 @@ test('Should return the neighbours of a cell with 8 neighbors', () => {
     expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
 })
 
-test('Should return the neighbours of a cell with 3 neighbors', () => {
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper left corner', () => {
+    const gameBoard: GameBoard = initializeBoard(2, 2);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } }
+    ]
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } })).toEqual(cellNeighbours);
+})
+
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper right corner', () => {
+    const gameBoard: GameBoard = initializeBoard(2, 2);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } }
+    ]
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } })).toEqual(cellNeighbours);
+})
+
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the bottom left corner', () => {
+    const gameBoard: GameBoard = initializeBoard(2, 2);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } }
+    ]
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } })).toEqual(cellNeighbours);
+})
+
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the bottom right corner', () => {
     const gameBoard: GameBoard = initializeBoard(2, 2);
     const cellNeighbours: Cell[] = [
         { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
@@ -64,3 +94,4 @@ test('Should return the neighbours of a cell with 3 neighbors', () => {
     ]
     expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
 })
+

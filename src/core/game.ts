@@ -21,11 +21,11 @@ export const initializeCell = (initialState: CellState, coordinates: Coordinates
 }
 
 export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordinates): Cell | null => {
-    if (gameBoard.length - 1 < coordinates.xAxis) {
+    if (coordinates.xAxis < 0 || coordinates.xAxis > gameBoard.length - 1) {
         return null
     }
 
-    if (gameBoard[0].length - 1 < coordinates.yAxis) {
+    if (coordinates.yAxis < 0 || coordinates.yAxis > gameBoard[0].length - 1) {
         return null
     }
 
