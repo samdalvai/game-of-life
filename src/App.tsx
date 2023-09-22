@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CellSquare from "./components/CellSquare";
 import { Cell, CellState } from "./types/game";
+import GameBoard from "./components/GameBoard";
 
 function App() {
   const [cell, setCell] = useState<Cell>({ state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } });
@@ -13,14 +14,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-white flex flex-col justify-center items-center p-2">
-      <div className="flex">
-        <CellSquare cell={cell} onClick={handleCellClick} />
-        <CellSquare cell={cell} onClick={handleCellClick} />
-      </div>
-      <div className="flex">
-        <CellSquare cell={cell} onClick={handleCellClick} />
-        <CellSquare cell={cell} onClick={handleCellClick} />
-      </div>
+      <GameBoard rows={3} columns={3} />
     </div >
   );
 }
