@@ -244,47 +244,47 @@ test('(Rule 1) On a 3x3 gameboard any live cell with two or three live neighbour
 
 test('(Rule 2) On a 3x3 gameboard any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
     /*
-    | | |X|
-    |X| | |
-    | | |X|
+    |X|X|X|
+    |X|X|X|
+    |X|X|X|
     */
     const currentGameboard: GameBoard = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
             { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
         ],
         [
             { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 1 } },
             { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
         ]
     ];
     /*
+    |X| |X|
     | | | |
-    | |X| |
-    | | | |
+    |X| |X|
     */
     const expectedGameBoard: GameBoard = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
         ],
         [
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
         ]
     ];
 
