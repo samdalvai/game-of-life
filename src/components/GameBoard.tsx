@@ -9,8 +9,8 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const handleCellClick = (cell: Cell) => {
         const nextState: CellState = cell.state === 'alive' ? 'dead' : 'alive';
         const { xAxis, yAxis } = cell.coordinates;
-        
-        const updatedCellMatrix: CellMatrix = { ...cellMatrix};
+
+        const updatedCellMatrix: CellMatrix = { ...cellMatrix };
         updatedCellMatrix[xAxis][yAxis].state = nextState;
 
         setCellMatrix(updatedCellMatrix);
@@ -18,13 +18,18 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
 
     return <>
         {
-            cellMatrix.map((cellRow: Cell[]) => {
-                console.log(cellRow)
-                return <div>{cellRow.map((cell: Cell) => <div className="flex">Cell</div>)}</div>;
+            cellMatrix.map((cellRow: Cell[], index: number) => <div key={'row-' + index} className="flex">
+                    {
+                        cellRow.map((cell: Cell) => {
+                        const { xAxis, yAxis } = cell.coordinates; 
+                        return <div key={'cell-' + xAxis + yAxis}>{cell.state}</div>;
+                    })
+                    }
+                </div>
                 /*return <div className="flex">{
                     cellRow.map((cell: Cell) => <CellSquare cell={cell} onClick={() => handleCellClick(cell)} />)
                 }</div>;*/
-            })
+            )
         }
     </>;
 }
