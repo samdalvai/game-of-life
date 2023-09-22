@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { getCellNextState, getNextBoardState } from "../core/rules";
-import { GameBoard } from '../types/game';
-import { printGameboard } from '../core/game';
+import { Cell, GameBoard } from '../types/game';
+import { getCellNeighboursAliveCount, printGameboard } from '../core/game';
 
 test('Any live cell with two live neighbours lives on to the next generation.', () => {
     const gameBoard: GameBoard = [
@@ -170,7 +170,16 @@ test('A gameboard with a dead cell with exactly three live neighbours should spa
         ]
     ];
 
+    console.log("Current: ")
     console.log(printGameboard(currentGameboard))
+
+    const cell: Cell = { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 }}
+    const count = getCellNeighboursAliveCount(currentGameboard, cell)
+    console.log("Alive count of cell: ", cell, " is: ", count)
+
+    const cell2: Cell = { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 }}
+    const count2 = getCellNeighboursAliveCount(currentGameboard, cell)
+    console.log("Alive count of cell: ", cell2, " is: ", count2)
 
     const expectedGameBoard: GameBoard = [
         [
@@ -189,6 +198,12 @@ test('A gameboard with a dead cell with exactly three live neighbours should spa
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
         ]
     ];
+
+    console.log("Expected: ")
+    console.log(printGameboard(expectedGameBoard))
+
+    console.log("Received: ")
+    console.log(printGameboard(getNextBoardState(currentGameboard)))
 
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
