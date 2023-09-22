@@ -55,7 +55,7 @@ test('Should return the neighbours of a cell with 8 neighbors', () => {
     expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
 });
 
-test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper left corner', () => {
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper left corner with 4 cells on the board', () => {
     const gameBoard: GameBoard = initializeBoard(2, 2);
     const cellNeighbours: Cell[] = [
         { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
@@ -63,6 +63,28 @@ test('Should return the neighbours of a cell with 3 neighbors for a cell in the 
         { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } }
     ];
     expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } })).toEqual(cellNeighbours);
+});
+
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper left corner with 9 cells on the board', () => {
+    const gameBoard: GameBoard = initializeBoard(3, 3);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+    ];
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } })).toEqual(cellNeighbours);
+});
+
+test('Should return the neighbours of a cell with 5 neighbors for a cell in the upper border with 9 cells on the board', () => {
+    const gameBoard: GameBoard = initializeBoard(3, 3);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+    ];
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } })).toEqual(cellNeighbours);
 });
 
 test('Should return the neighbours of a cell with 3 neighbors for a cell in the upper right corner', () => {
@@ -93,6 +115,28 @@ test('Should return the neighbours of a cell with 3 neighbors for a cell in the 
         { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } }
     ];
     expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual(cellNeighbours);
+});
+
+test('Should return the neighbours of a cell with 3 neighbors for a cell in the bottom right corner with 9 cells on the board', () => {
+    const gameBoard: GameBoard = initializeBoard(3, 3);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+    ];
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } })).toEqual(cellNeighbours);
+});
+
+test('Should return the neighbours of a cell with 5 neighbors for a cell in the bottom border with 9 cells on the board', () => {
+    const gameBoard: GameBoard = initializeBoard(3, 3);
+    const cellNeighbours: Cell[] = [
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+        { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+        { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+    ];
+    expect(getCellNeighbours(gameBoard, { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } })).toEqual(cellNeighbours);
 });
 
 test('Should return the number of alive cells that are neighbour to a cell with 8 alive neighbors', () => {
