@@ -7,7 +7,7 @@ const CellSquare = ({cell, onClick}: {cell: Cell, onClick: CallBack}) => {
         alive: 'bg-white'
     };
 
-    return <span className={`w-10 h-10 border-solid border-2 border-slate-500 rounded-sm cursor-pointer ${cellColors[cell.state]}`} onClick={onClick}/>;
+    return <span className={`w-10 h-10 border-solid border border-slate-500 rounded-sm cursor-pointer ${cellColors[cell.state]}`} onClick={onClick}/>;
 };
 
 export default CellSquare;

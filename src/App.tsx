@@ -3,7 +3,7 @@ import CellSquare from "./components/CellSquare";
 import { Cell, CellState } from "./types/game";
 
 function App() {
-  const [cell, setCell] = useState<Cell>({ state: 'alive', coordinates: { xAxis: 0, yAxis: 0}});
+  const [cell, setCell] = useState<Cell>({ state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } });
 
   const handleCellClick = () => {
     const nextState: CellState = cell.state === 'alive' ? 'dead' : 'alive';
@@ -12,9 +12,16 @@ function App() {
   };
 
   return (
-    <div className="w-screen h-screen bg-white flex justify-center items-center p-2">
-      <CellSquare cell={cell} onClick={handleCellClick} />
-    </div>
+    <div className="w-screen h-screen bg-white flex flex-col justify-center items-center p-2">
+      <div className="flex">
+        <CellSquare cell={cell} onClick={handleCellClick} />
+        <CellSquare cell={cell} onClick={handleCellClick} />
+      </div>
+      <div className="flex">
+        <CellSquare cell={cell} onClick={handleCellClick} />
+        <CellSquare cell={cell} onClick={handleCellClick} />
+      </div>
+    </div >
   );
 }
 
