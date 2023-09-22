@@ -1,8 +1,8 @@
-import { Cell, CellState, GameBoard } from "../types/game";
+import { Cell, CellState, CellMatrix } from "../types/game";
 import { getCellNeighboursAliveCount } from "./game";
 
-export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState => {
-    const aliveNeighboursCount = getCellNeighboursAliveCount(gameBoard, cell);
+export const getCellNextState = (CellMatrix: CellMatrix, cell: Cell): CellState => {
+    const aliveNeighboursCount = getCellNeighboursAliveCount(CellMatrix, cell);
 
     // Rule 1: Any live cell with two or three live neighbours lives on to the next generation.
     if (cell.state === 'alive' && aliveNeighboursCount === 2 || aliveNeighboursCount === 3) {
@@ -22,15 +22,15 @@ export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState =>
     return 'dead';
 };
 
-export const getNextBoardState = (currentGameBoard: GameBoard): GameBoard => {
-    const nextGameBoard: GameBoard = [];
+export const getNextCellMatrixState = (currentCellMatrix: CellMatrix): CellMatrix => {
+    const nextCellMatrix: CellMatrix = [];
 
-    for (let i = 0; i < currentGameBoard.length; i++) {
+    for (let i = 0; i < currentCellMatrix.length; i++) {
         const row = [];
 
-        for (let j = 0; j < currentGameBoard[0].length; j++) {
-            const currentCell: Cell = currentGameBoard[i][j];
-            const nextCellState: CellState = getCellNextState(currentGameBoard, currentCell);
+        for (let j = 0; j < currentCellMatrix[0].length; j++) {
+            const currentCell: Cell = currentCellMatrix[i][j];
+            const nextCellState: CellState = getCellNextState(currentCellMatrix, currentCell);
 
             if (currentCell.state !== nextCellState) {
                 row.push({ ...currentCell, state: nextCellState });
@@ -39,8 +39,8 @@ export const getNextBoardState = (currentGameBoard: GameBoard): GameBoard => {
             }
         }
 
-        nextGameBoard.push(row);
+        nextCellMatrix.push(row);
     }
 
-    return nextGameBoard;
+    return nextCellMatrix;
 };

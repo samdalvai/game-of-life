@@ -1,7 +1,7 @@
-import { Cell, CellState, Coordinates, GameBoard } from "../types/game";
+import { Cell, CellState, Coordinates, CellMatrix } from "../types/game";
 
-export const initializeBoard = (rows: number, columns: number): GameBoard => {
-    const gameBoard: GameBoard = [];
+export const initializeCellMatrix = (rows: number, columns: number): CellMatrix => {
+    const CellMatrix: CellMatrix = [];
 
     for (let i = 0; i < rows; i++) {
         const row = [];
@@ -10,18 +10,18 @@ export const initializeBoard = (rows: number, columns: number): GameBoard => {
             row.push(initializeCell('dead', { xAxis: i, yAxis: j }));
         }
 
-        gameBoard.push(row);
+        CellMatrix.push(row);
     }
 
-    return gameBoard;
+    return CellMatrix;
 };
 
-export const getGameboardAsString = (gameBoard: GameBoard): string => {
+export const getCellMatrixAsString = (CellMatrix: CellMatrix): string => {
     let output = '';
-    for (let i = 0; i < gameBoard.length; i++) {
+    for (let i = 0; i < CellMatrix.length; i++) {
         output += '|';
-        for (let j = 0; j < gameBoard[0].length; j++) {
-            output += (gameBoard[i][j].state === 'alive' ? 'X' : ' ') + '|';
+        for (let j = 0; j < CellMatrix[0].length; j++) {
+            output += (CellMatrix[i][j].state === 'alive' ? 'X' : ' ') + '|';
         }
         output += '\n';
     }
@@ -29,34 +29,34 @@ export const getGameboardAsString = (gameBoard: GameBoard): string => {
     return output;
 };
 
-export const printGameboard = (gameBoard: GameBoard): void => {
-    console.log(getGameboardAsString(gameBoard));
+export const printCellMatrix = (CellMatrix: CellMatrix): void => {
+    console.log(getCellMatrixAsString(CellMatrix));
 };
 
 export const initializeCell = (initialState: CellState, coordinates: Coordinates): Cell => {
     return { state: initialState, coordinates: coordinates };
 };
 
-export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordinates): Cell | null => {
-    if (coordinates.xAxis < 0 || coordinates.xAxis > gameBoard.length - 1) {
+export const getCellByCoordinates = (CellMatrix: CellMatrix, coordinates: Coordinates): Cell | null => {
+    if (coordinates.xAxis < 0 || coordinates.xAxis > CellMatrix.length - 1) {
         return null;
     }
 
-    if (coordinates.yAxis < 0 || coordinates.yAxis > gameBoard[0].length - 1) {
+    if (coordinates.yAxis < 0 || coordinates.yAxis > CellMatrix[0].length - 1) {
         return null;
     }
 
-    return { ...gameBoard[coordinates.xAxis][coordinates.yAxis] };
+    return { ...CellMatrix[coordinates.xAxis][coordinates.yAxis] };
 };
 
-export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
+export const getCellNeighbours = (CellMatrix: CellMatrix, cell: Cell): Cell[] => {
     const neighbours: Cell[] = [];
     const { xAxis, yAxis } = cell.coordinates;
 
     for (let i = xAxis - 1; i <= xAxis + 1; i++) {
         for (let j = yAxis - 1; j <= yAxis + 1; j++) {
             if (!(i === xAxis && j === yAxis)) {
-                const neighbour: Cell | null = getCellByCoordinates(gameBoard, { xAxis: i, yAxis: j });
+                const neighbour: Cell | null = getCellByCoordinates(CellMatrix, { xAxis: i, yAxis: j });
                 if (neighbour) {
                     neighbours.push(neighbour);
                 }
@@ -67,8 +67,8 @@ export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
     return neighbours;
 };
 
-export const getCellNeighboursAliveCount = (gameBoard: GameBoard, cell: Cell): number => {
-    const neighbours: Cell[] = getCellNeighbours(gameBoard, cell);
+export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cell: Cell): number => {
+    const neighbours: Cell[] = getCellNeighbours(CellMatrix, cell);
 
     return neighbours.reduce((acc, cell) => acc + (cell.state === 'alive' ? 1 : 0), 0);
 };

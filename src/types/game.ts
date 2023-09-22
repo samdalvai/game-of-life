@@ -10,4 +10,4 @@ export interface Coordinates {
     yAxis: number
 }
 
-export type GameBoard = Cell[][]
+export type CellMatrix = Cell[][]
