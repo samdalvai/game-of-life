@@ -190,69 +190,48 @@ test('A 2x2 gameboard with just 2 live cells should make all cells die.', () => 
         ]
     ];
 
-    printGameboard(currentGameboard)
-    printGameboard(expectedGameBoard)
-
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
-/*
-test('A gameboard with a dead cell with exactly three live neighbours should spawn a new alive cell', () => {
+test('On a 3x3 gameboard any live cell with two or three live neighbours lives on to the next generation.', () => {
     const currentGameboard: GameBoard = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
         ],
         [
             { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
         ],
         [
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
         ]
     ];
-
-    console.log("Current: ")
-    console.log(printGameboard(currentGameboard))
-
-    const cell: Cell = { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 }}
-    const count = getCellNeighboursAliveCount(currentGameboard, cell)
-    console.log("Alive count of cell: ", cell, " is: ", count)
-
-    const cell2: Cell = { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 }}
-    const count2 = getCellNeighboursAliveCount(currentGameboard, cell)
-    console.log("Alive count of cell: ", cell2, " is: ", count2)
 
     const expectedGameBoard: GameBoard = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
-        ],
-        [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+        ],
+        [
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
         ]
     ];
 
-    console.log("Expected: ")
-    console.log(printGameboard(expectedGameBoard))
-
-    console.log("Received: ")
-    console.log(printGameboard(getNextBoardState(currentGameboard)))
-
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
-});*/
+});
 
 //Any live cell with two or three live neighbours lives on to the next generation.
 

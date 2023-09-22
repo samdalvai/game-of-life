@@ -1,8 +1,9 @@
 import { Cell, CellState, GameBoard } from "../types/game";
-import { getCellNeighboursAliveCount } from "./game";
+import { getCellNeighboursAliveCount, printGameboard } from "./game";
 
 export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState => {
     const aliveNeighboursCount = getCellNeighboursAliveCount(gameBoard, cell);
+    console.log("Alive neightbours: ", aliveNeighboursCount)
 
     //Any live cell with two or three live neighbours lives on to the next generation.
     if (cell.state === 'alive' && aliveNeighboursCount === 2 || aliveNeighboursCount === 3) {
@@ -24,6 +25,7 @@ export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState =>
 
 export const getNextBoardState = (currentGameBoard: GameBoard): GameBoard => {
     const nextGameBoard: GameBoard = [];
+    printGameboard(currentGameBoard)
 
     for (let i = 0; i < currentGameBoard.length; i++) {
         const row = [];
@@ -31,6 +33,7 @@ export const getNextBoardState = (currentGameBoard: GameBoard): GameBoard => {
         for (let j = 0; j < currentGameBoard[0].length; j++) {
             const currentCell: Cell = currentGameBoard[i][j];
             const nextCellState: CellState = getCellNextState(currentGameBoard, currentCell);
+            console.log("Next state for cell: ", currentCell, " is ", nextCellState)
 
             if (currentCell.state !== nextCellState) {
                 row.push({ ...currentCell, state: nextCellState });

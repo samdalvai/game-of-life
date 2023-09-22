@@ -50,23 +50,24 @@ export const getCellByCoordinates = (gameBoard: GameBoard, coordinates: Coordina
 };
 
 export const getCellNeighbours = (gameBoard: GameBoard, cell: Cell): Cell[] => {
-    const neighbors: Cell[] = [];
+    const neighbours: Cell[] = [];
     const { xAxis, yAxis } = cell.coordinates;
 
     for (let i = xAxis - 1; i <= xAxis + 1; i++) {
         for (let j = yAxis - 1; j <= yAxis + 1; j++) {
             const neighbor: Cell | null = getCellByCoordinates(gameBoard, { xAxis: i, yAxis: j });
             if (neighbor && !(xAxis === i && yAxis === j)) {
-                neighbors.push(neighbor);
+                neighbours.push(neighbor);
             }
         }
     }
 
-    return neighbors;
+    return neighbours;
 };
 
 export const getCellNeighboursAliveCount = (gameBoard: GameBoard, cell: Cell): number => {
-    const neighbors: Cell[] = getCellNeighbours(gameBoard, cell);
+    const neighbours: Cell[] = getCellNeighbours(gameBoard, cell);
+    console.log("Neighbours of cell ", cell, " = ", neighbours)
 
-    return neighbors.reduce((acc, cell) => acc + (cell.state === 'alive' ? 1 : 0), 0);
+    return neighbours.reduce((acc, cell) => acc + (cell.state === 'alive' ? 1 : 0), 0);
 };
