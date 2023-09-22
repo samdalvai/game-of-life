@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
 import { getCellNextState, getNextBoardState } from "../core/rules";
 import { Cell, GameBoard } from '../types/game';
-import { getCellNeighboursAliveCount, printGameboard } from '../core/game';
+import { getCellNeighboursAliveCount, initializeBoard, printGameboard } from '../core/game';
 
 test('Any live cell with two live neighbours lives on to the next generation.', () => {
     const gameBoard: GameBoard = [
@@ -129,26 +129,71 @@ test('Any dead cell with more than three live neighbours remains dead.', () => {
     expect(getCellNextState(gameBoard, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
 });
 
-test('A gameboard with only dead cells should not spawn any new cell.', () => {
+test('A 2x2 gameboard with only dead cells should not spawn any new cell.', () => {
+    const currentGameboard: GameBoard = initializeBoard(2,2);
+
+    expect(getNextBoardState(currentGameboard)).toEqual(currentGameboard);    
+});
+
+test('A 3x3 gameboard with only dead cells should not spawn any new cell.', () => {
+    const currentGameboard: GameBoard = initializeBoard(3,3);
+
+    expect(getNextBoardState(currentGameboard)).toEqual(currentGameboard);    
+});
+
+test('A 2x2 gameboard with one dead cell and 3 live cells should spawn a new cell.', () => {
     const currentGameboard: GameBoard = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
-        ],
-        [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
         ]
     ];
 
-    expect(getNextBoardState(currentGameboard)).toEqual(currentGameboard);    
+    const expectedGameBoard: GameBoard = [
+        [
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+        ],
+        [
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+        ]
+    ];
+
+    expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
+});
+
+test('A 2x2 gameboard with just 2 live cells should make all cells die.', () => {
+    const currentGameboard: GameBoard = [
+        [
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+        ]
+    ];
+
+    const expectedGameBoard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+        ]
+    ];
+
+    printGameboard(currentGameboard)
+    printGameboard(expectedGameBoard)
+
+    expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
 /*
