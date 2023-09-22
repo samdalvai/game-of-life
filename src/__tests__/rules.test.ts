@@ -1,9 +1,9 @@
 import { expect, test } from 'vitest';
 import { getCellNextState, getNextBoardState } from "../core/rules";
-import { Cell, GameBoard } from '../types/game';
-import { getCellNeighboursAliveCount, initializeBoard, printGameboard } from '../core/game';
+import { GameBoard } from '../types/game';
+import { initializeBoard } from '../core/game';
 
-test('Any live cell with two live neighbours lives on to the next generation.', () => {
+test('(Rule 1) Any live cell with two live neighbours lives on to the next generation.', () => {
     const gameBoard: GameBoard = [
         [
             { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
@@ -24,7 +24,7 @@ test('Any live cell with two live neighbours lives on to the next generation.', 
     expect(getCellNextState(gameBoard, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('alive');
 });
 
-test('Any live cell with three live neighbours lives on to the next generation.', () => {
+test('(Rule 1) Any live cell with three live neighbours lives on to the next generation.', () => {
     const gameBoard: GameBoard = [
         [
             { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
@@ -45,7 +45,7 @@ test('Any live cell with three live neighbours lives on to the next generation.'
     expect(getCellNextState(gameBoard, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('alive');
 });
 
-test('Any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
+test('(Rule 2) Any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
     const gameBoard: GameBoard = [
         [
             { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
@@ -66,7 +66,7 @@ test('Any live cell with more than three live neighbours dies, as if by overpopu
     expect(getCellNextState(gameBoard, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
 });
 
-test('Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
+test('(Rule 3) Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
     const gameBoard: GameBoard = [
         [
             { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
@@ -193,7 +193,7 @@ test('A 2x2 gameboard with just 2 live cells should make all cells die.', () => 
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
-test('On a 3x3 gameboard any live cell with two or three live neighbours lives on to the next generation..', () => {
+test('(Rule 1) On a 3x3 gameboard any live cell with two or three live neighbours lives on to the next generation..', () => {
     /*
     | | |X|
     | |X| |
@@ -242,7 +242,7 @@ test('On a 3x3 gameboard any live cell with two or three live neighbours lives o
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
-test('On a 3x3 gameboard any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
+test('(Rule 2) On a 3x3 gameboard any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
     /*
     | | |X|
     |X| | |
@@ -291,6 +291,53 @@ test('On a 3x3 gameboard any dead cell with exactly three live neighbours become
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
-//Any live cell with two or three live neighbours lives on to the next generation.
+test('(Rule 3) On a 3x3 gameboard any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
+    /*
+    | | |X|
+    |X| | |
+    | | |X|
+    */
+    const currentGameboard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+        ],
+        [
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
+        ]
+    ];
+    /*
+    | | | |
+    | |X| |
+    | | | |
+    */
+    const expectedGameBoard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+        ]
+    ];
 
-//Any live cell with more than three live neighbours dies, as if by overpopulation.
+    expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
+});
+
+

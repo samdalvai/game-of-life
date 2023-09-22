@@ -1,20 +1,20 @@
 import { Cell, CellState, GameBoard } from "../types/game";
-import { getCellNeighboursAliveCount, printGameboard } from "./game";
+import { getCellNeighboursAliveCount } from "./game";
 
 export const getCellNextState = (gameBoard: GameBoard, cell: Cell): CellState => {
     const aliveNeighboursCount = getCellNeighboursAliveCount(gameBoard, cell);
 
-    //Any live cell with two or three live neighbours lives on to the next generation.
+    // Rule 1: Any live cell with two or three live neighbours lives on to the next generation.
     if (cell.state === 'alive' && aliveNeighboursCount === 2 || aliveNeighboursCount === 3) {
         return 'alive';
     }
 
-    //Any live cell with more than three live neighbours dies, as if by overpopulation.
+    // Rule 2: Any live cell with more than three live neighbours dies, as if by overpopulation.
     if (cell.state === 'alive' && aliveNeighboursCount > 3) {
         return 'dead';
     }
 
-    //Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
+    // Rule 3: Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
     if (cell.state === 'dead' && aliveNeighboursCount === 3) {
         return 'alive';
     }
