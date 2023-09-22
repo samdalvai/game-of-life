@@ -1,5 +1,4 @@
 import { Cell, CellState, Coordinates, GameBoard } from "../types/game";
-import { getCellNextState } from "./rules";
 
 export const initializeBoard = (rows: number, columns: number): GameBoard => {
     const gameBoard: GameBoard = [];
@@ -15,6 +14,23 @@ export const initializeBoard = (rows: number, columns: number): GameBoard => {
     }
 
     return gameBoard;
+};
+
+export const getGameboardAsString = (gameBoard: GameBoard): string => {
+    let output = '';
+    for (let i = 0; i < gameBoard.length; i++) {
+        output += '|';
+        for (let j = 0; j < gameBoard[0].length; j++) {
+            output += (gameBoard[i][j].state === 'alive' ? 'X' : ' ') + '|';
+        }
+        output += '\n';
+    }
+
+    return output;
+};
+
+export const printGameboard = (gameBoard: GameBoard): void => {
+    console.log(getGameboardAsString(gameBoard));
 };
 
 export const initializeCell = (initialState: CellState, coordinates: Coordinates): Cell => {
