@@ -193,40 +193,98 @@ test('A 2x2 gameboard with just 2 live cells should make all cells die.', () => 
     expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
 });
 
-test('On a 3x3 gameboard any live cell with two or three live neighbours lives on to the next generation.', () => {
+test('On a 3x3 gameboard any live cell with two or three live neighbours lives on to the next generation..', () => {
+    /*
+    | | |X|
+    | |X| |
+    |X| | |
+    */
     const currentGameboard: GameBoard = [
         [
             { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
             { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
-        ],
-        [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
         ],
         [
             { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        ],
+        [
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+        ]
+    ];
+    /*
+    | | | |
+    | |X| |
+    | | | |
+    */
+    const expectedGameBoard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
         ]
     ];
 
+    expect(getNextBoardState(currentGameboard)).toEqual(expectedGameBoard);    
+});
+
+test('On a 3x3 gameboard any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
+    /*
+    | | |X|
+    |X| | |
+    | | |X|
+    */
+    const currentGameboard: GameBoard = [
+        [
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+        ],
+        [
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+        ],
+        [
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
+        ]
+    ];
+    /*
+    | | | |
+    | |X| |
+    | | | |
+    */
     const expectedGameBoard: GameBoard = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
+            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
+            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
         ]
     ];
 
@@ -236,5 +294,3 @@ test('On a 3x3 gameboard any live cell with two or three live neighbours lives o
 //Any live cell with two or three live neighbours lives on to the next generation.
 
 //Any live cell with more than three live neighbours dies, as if by overpopulation.
-
-//Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.
