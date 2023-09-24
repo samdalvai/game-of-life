@@ -25,7 +25,7 @@ function ZoomableWindow({ children }: { children: ChildrenProps }) {
     return (
         <div className="w-full h-full overflow-hidden border border-gray-500 relative shadow-md">
             <div
-                className="w-full h-full transform origin-top-left transition-transform"
+                className="w-full h-full flex items-center justify-center transform origin-center transition-transform"
                 style={{ transform: `scale(${zoom})` }}
             >
                 {children}
