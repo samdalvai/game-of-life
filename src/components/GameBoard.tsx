@@ -4,6 +4,7 @@ import { initializeCellMatrix } from "../core/game";
 import { getNextCellMatrixState } from "../core/rules";
 import TimedCounter from "./TimedCounter";
 import CellMatrixField from "./CellMatrixField";
+import Button from "./Button";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -25,6 +26,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
 
     const handleResetState = () => {
         setCellMatrix(initializeCellMatrix(rows, columns));
+        setGameRunning(false);
     };
 
     const handleRunGame = () => {
@@ -37,24 +39,17 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
             <div className="pe-1 w-full">
                 {
                     !gameRunning ?
-                        <button className="px-4 py-2 w-full bg-green-700 text-white rounded hover:bg-green-800" onClick={handleRunGame}>
-                            Run game
-                        </button>
+
+                        <Button text="Run game" color="green" onClick={handleRunGame} />
                         :
-                        <button className="px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600" onClick={handleRunGame}>
-                            Stop game
-                        </button>
+                        <Button text="Stio game" color="red" onClick={handleRunGame} />
                 }
             </div>
             <div className="px-1 w-full">
-                <button className="px-4 py-2 w-full bg-gray-500 text-white rounded hover:bg-gray-600" onClick={handleResetState}>
-                    Reset
-                </button>
+                <Button text="Reset" color="gray" onClick={handleResetState} />
             </div>
             <div className="ps-1 w-full">
-                <button className="px-4 py-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleGetNextState}>
-                    Get next state
-                </button>
+                <Button text="Get next state" color="blue" onClick={handleGetNextState} />
             </div>
         </div>
         {gameRunning && <TimedCounter interval={250} onCount={handleGetNextState} />}
