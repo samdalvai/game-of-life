@@ -6,7 +6,7 @@ import { getNextCellMatrixState } from "../core/rules";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
-    const [timedUpdateActive, setTimedUpdateActive] = useState<boolean>(false);
+    const [gameRunning, setGameRunning] = useState<boolean>(false);
 
     const handleCellClick = (cell: Cell) => {
         const nextState: CellState = cell.state === 'alive' ? 'dead' : 'alive';
@@ -27,7 +27,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     };
 
     const handleRunGame = () => {
-        setTimedUpdateActive((current) => !current);
+        setGameRunning((current) => !current);
     };
 
     return <div className="w-full flex flex-col justify-center">
@@ -51,9 +51,16 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
                 </button>
             </div>
             <div className="ps-1 w-full">
-                <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
-                    Run game
-                </button>
+                {
+                    !gameRunning ?
+                    <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
+                        Run game
+                    </button>
+                    :
+                    <button className="px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600" onClick={handleRunGame}>
+                        Stop game
+                    </button>
+                }
             </div>
             <div className="ps-1 w-full">
                 <button className="px-4 py-2 w-full bg-gray-500 text-white rounded hover:bg-gray-600" onClick={handleResetState}>
