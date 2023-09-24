@@ -42,7 +42,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
 
                         <Button text="Run game" color="green" onClick={handleRunGame} />
                         :
-                        <Button text="Stio game" color="red" onClick={handleRunGame} />
+                        <Button text="Stop game" color="red" onClick={handleRunGame} />
                 }
             </div>
             <div className="px-1 w-full">
