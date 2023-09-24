@@ -26,6 +26,10 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setCellMatrix(initializeCellMatrix(rows, columns));
     };
 
+    const handleRunGame = () => {
+        setTimedUpdateActive((current) => !current);
+    };
+
     return <div className="w-full flex flex-col justify-center">
         {
             cellMatrix.map((cellRow: Cell[], index: number) => <div key={'row-' + index} className="flex justify-center">
@@ -47,7 +51,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
                 </button>
             </div>
             <div className="ps-1 w-full">
-                <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleResetState}>
+                <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
                     Run game
                 </button>
             </div>
