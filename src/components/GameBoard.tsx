@@ -3,7 +3,7 @@ import { Cell, CellMatrix, CellState } from "../types/game";
 import { initializeCellMatrix } from "../core/game";
 import { getNextCellMatrixState } from "../core/rules";
 import TimedCounter from "./TimedCounter";
-import CellMatrixField from "./CellMatrix";
+import CellMatrixField from "./CellMatrixField";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
