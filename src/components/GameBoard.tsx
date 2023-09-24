@@ -5,6 +5,7 @@ import { getNextCellMatrixState } from "../core/rules";
 import TimedCounter from "./TimedCounter";
 import CellMatrixField from "./CellMatrixField";
 import Button from "./Button";
+import ZoomableWindow from "./ZoomableWindow";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -33,8 +34,10 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setGameRunning((current) => !current);
     };
 
-    return <div className="w-full flex flex-col justify-center">
-        <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
+    return <div className="w-full h-full flex flex-col justify-center">
+        <ZoomableWindow>
+            <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
+        </ZoomableWindow>
         <div className="py-3 w-full flex justify-between">
             <div className="pe-1 w-full">
                 {

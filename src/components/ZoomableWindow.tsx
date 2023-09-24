@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ChildrenProps } from '../types/components';
+import { CallBack } from '../types/callbacks';
 
 function ZoomableWindow({ children }: { children: ChildrenProps }) {
     const [zoom, setZoom] = useState<number>(1);
@@ -12,27 +13,26 @@ function ZoomableWindow({ children }: { children: ChildrenProps }) {
         setZoom(zoom - 0.1);
     };
 
+    const ZoomButton = ({ onClick, sign }: { sign: '+' | '-', onClick: CallBack }) => {
+        return <button
+            className="flex items-center justify-center w-6 h-6 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2"
+            onClick={onClick}
+        >
+            <span>{sign}</span>
+        </button>;
+    };
+
     return (
-        <div className="w-64 h-48 overflow-hidden border border-gray-500 relative">
+        <div className="w-full h-full overflow-hidden border border-gray-500 relative shadow-md">
             <div
                 className="w-full h-full transform origin-top-left transition-transform"
                 style={{ transform: `scale(${zoom})` }}
             >
                 {children}
             </div>
-            <div className="absolute bottom-2 right-2">
-                <button
-                    className="bg-blue-500 hover:bg-blue-600 text-white py-1 px-2 rounded"
-                    onClick={handleZoomIn}
-                >
-                    Zoom In
-                </button>
-                <button
-                    className="bg-red-500 hover:bg-red-600 text-white py-1 px-2 rounded ml-2"
-                    onClick={handleZoomOut}
-                >
-                    Zoom Out
-                </button>
+            <div className="flex absolute bottom-2 right-2">
+                <ZoomButton sign="+" onClick={handleZoomIn} />
+                <ZoomButton sign="-" onClick={handleZoomOut} />
             </div>
         </div>
     );
