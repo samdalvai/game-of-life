@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { Cell, CellMatrix, CellState } from "../types/game";
 import { initializeCellMatrix } from "../core/game";
-import CellSquare from "./CellSquare";
 import { getNextCellMatrixState } from "../core/rules";
 import TimedCounter from "./TimedCounter";
+import CellMatrixField from "./CellMatrix";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -32,19 +32,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     };
 
     return <div className="w-full flex flex-col justify-center">
-        {
-            cellMatrix.map((cellRow: Cell[], index: number) => <div key={'row-' + index} className="flex justify-center">
-                {
-                    cellRow.map((cell: Cell) => {
-                        const { xAxis, yAxis } = cell.coordinates;
-                        return <CellSquare
-                            key={'cell-' + xAxis + yAxis}
-                            cell={cell}
-                            onClick={() => handleCellClick(cell)} />;
-                    })
-                }
-            </div>)
-        }
+        <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         <div className="py-3 w-full flex justify-between">
             <div className="pe-1 w-full">
                 {
