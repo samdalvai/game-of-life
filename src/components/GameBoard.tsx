@@ -45,11 +45,11 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
                 }
             </div>)
         }
-        <div className="py-2 w-full flex justify-between">
+        <div className="py-3 w-full flex justify-between">
             <div className="pe-1 w-full">
                 {
                     !gameRunning ?
-                        <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
+                        <button className="px-4 py-2 w-full bg-green-700 text-white rounded hover:bg-green-800" onClick={handleRunGame}>
                             Run game
                         </button>
                         :
