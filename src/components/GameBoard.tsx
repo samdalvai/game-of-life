@@ -3,6 +3,7 @@ import { Cell, CellMatrix, CellState } from "../types/game";
 import { initializeCellMatrix } from "../core/game";
 import CellSquare from "./CellSquare";
 import { getNextCellMatrixState } from "../core/rules";
+import TimedCounter from "./TimedCounter";
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -46,28 +47,29 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         }
         <div className="py-2 w-full flex justify-between">
             <div className="pe-1 w-full">
-                <button className="px-4 py-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleGetNextState}>
-                    Get next state
-                </button>
-            </div>
-            <div className="ps-1 w-full">
                 {
                     !gameRunning ?
-                    <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
-                        Run game
-                    </button>
-                    :
-                    <button className="px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600" onClick={handleRunGame}>
-                        Stop game
-                    </button>
+                        <button className="px-4 py-2 w-full bg-green-500 text-white rounded hover:bg-green-600" onClick={handleRunGame}>
+                            Run game
+                        </button>
+                        :
+                        <button className="px-4 py-2 w-full bg-red-500 text-white rounded hover:bg-red-600" onClick={handleRunGame}>
+                            Stop game
+                        </button>
                 }
             </div>
-            <div className="ps-1 w-full">
+            <div className="px-1 w-full">
                 <button className="px-4 py-2 w-full bg-gray-500 text-white rounded hover:bg-gray-600" onClick={handleResetState}>
                     Reset
                 </button>
             </div>
+            <div className="ps-1 w-full">
+                <button className="px-4 py-2 w-full bg-blue-500 text-white rounded hover:bg-blue-600" onClick={handleGetNextState}>
+                    Get next state
+                </button>
+            </div>
         </div>
+        {gameRunning && <TimedCounter interval={250} onCount={handleGetNextState} />}
     </div>;
 };
 

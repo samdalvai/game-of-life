@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { CallBack } from "../types/callbacks";
 
-const TimedCounter = () => {
-    const [count, setCount] = useState<number>(0);
-
+const TimedCounter = ({ interval, onCount }: { interval: number, onCount: CallBack}) => {
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCount(prevCount => prevCount + 1);
-    }, 1000);
+        onCount();
+    }, interval);
 
     return () => clearInterval(intervalId);
-  }, []);
+  }, [interval, onCount]);
 
-  return (
-    <div>
-      <p>Count: {count}</p>
-    </div>
-  );
+  return null;
 };
 
 export default TimedCounter;
