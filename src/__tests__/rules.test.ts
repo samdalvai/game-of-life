@@ -6,127 +6,127 @@ import { initializeCellMatrix } from '../core/game';
 test('(Rule 1) Any live cell with two live neighbours lives on to the next generation.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('alive');
+    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 })).toEqual('alive');
 });
 
 test('(Rule 1) Any live cell with three live neighbours lives on to the next generation.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'alive' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('alive');
+    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 } )).toEqual('alive');
 });
 
 test('(Rule 2) Any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'alive' },
+            { state: 'alive' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
+    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('(Rule 3) Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'alive' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('alive');
+    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('alive');
 });
 
 test('Any dead cell with less than three live neighbours remains dead.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
+    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('Any dead cell with more than three live neighbours remains dead.', () => {
     const CellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'alive' }
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' }
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } }
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } })).toEqual('dead');
+    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('A 2x2 CellMatrix with only dead cells should not spawn any new cell.', () => {
@@ -144,23 +144,23 @@ test('A 3x3 CellMatrix with only dead cells should not spawn any new cell.', () 
 test('A 2x2 CellMatrix with one dead cell and 3 live cells should spawn a new cell.', () => {
     const currentCellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive' },
+            { state: 'alive' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'alive' },
+            { state: 'dead' },
         ]
     ];
 
     const expectedCellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive' },
+            { state: 'alive' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'alive' },
+            { state: 'alive' },
         ]
     ];
 
@@ -170,23 +170,23 @@ test('A 2x2 CellMatrix with one dead cell and 3 live cells should spawn a new ce
 test('A 2x2 CellMatrix with just 2 live cells should make all cells die.', () => {
     const currentCellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'alive' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead' },
+            { state: 'alive' },
         ]
     ];
 
     const expectedCellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
+            { state: 'dead' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
+            { state: 'dead' },
+            { state: 'dead' },
         ]
     ];
 
@@ -201,19 +201,19 @@ test('(Rule 1) On a 3x3 CellMatrix any live cell with two or three live neighbou
     */
     const currentCellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'dead' },
         ]
     ];
     /*
@@ -223,19 +223,19 @@ test('(Rule 1) On a 3x3 CellMatrix any live cell with two or three live neighbou
     */
     const expectedCellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' },
         ]
     ];
 
@@ -250,19 +250,19 @@ test('(Rule 2) On a 3x3 CellMatrix any live cell with more than three live neigh
     */
     const currentCellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'alive' },
+            { state: 'alive' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'alive' },
+            { state: 'alive' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'alive' },
+            { state: 'alive' },
         ]
     ];
     /*
@@ -272,19 +272,19 @@ test('(Rule 2) On a 3x3 CellMatrix any live cell with more than three live neigh
     */
     const expectedCellMatrix: CellMatrix = [
         [
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'alive' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'alive' },
         ]
     ];
 
@@ -299,19 +299,19 @@ test('(Rule 3) On a 3x3 CellMatrix any dead cell with exactly three live neighbo
     */
     const currentCellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' },
         ],
         [
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'alive' },
+            { state: 'dead' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'alive', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'alive' },
         ]
     ];
     /*
@@ -321,19 +321,19 @@ test('(Rule 3) On a 3x3 CellMatrix any dead cell with exactly three live neighbo
     */
     const expectedCellMatrix: CellMatrix = [
         [
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 0, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 0 } },
-            { state: 'alive', coordinates: { xAxis: 1, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 1, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'alive' },
+            { state: 'dead' },
         ],
         [
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 0 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 1 } },
-            { state: 'dead', coordinates: { xAxis: 2, yAxis: 2 } },
+            { state: 'dead' },
+            { state: 'dead' },
+            { state: 'dead' },
         ]
     ];
 
