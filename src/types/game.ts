@@ -2,7 +2,7 @@ export type CellState = "dead" | "alive"
 
 export interface Cell {
     state: CellState
-    coordinates: Coordinates
+    //coordinates: Coordinates
 }
 
 export interface Coordinates {

@@ -1,13 +1,13 @@
-import { Cell, CellState, Coordinates, CellMatrix } from "../types/game";
+import { Cell, Coordinates, CellMatrix } from "../types/game";
 
 export const initializeCellMatrix = (rows: number, columns: number): CellMatrix => {
     const CellMatrix: CellMatrix = [];
 
     for (let i = 0; i < rows; i++) {
-        const row = [];
+        const row: Cell[] = [];
 
         for (let j = 0; j < columns; j++) {
-            row.push(initializeCell('dead', { xAxis: i, yAxis: j }));
+            row.push({ state: 'dead' });
         }
 
         CellMatrix.push(row);
@@ -33,10 +33,6 @@ export const printCellMatrix = (CellMatrix: CellMatrix): void => {
     console.log(getCellMatrixAsString(CellMatrix));
 };
 
-export const initializeCell = (initialState: CellState, coordinates: Coordinates): Cell => {
-    return { state: initialState, coordinates: coordinates };
-};
-
 export const getCellByCoordinates = (CellMatrix: CellMatrix, coordinates: Coordinates): Cell | null => {
     if (coordinates.xAxis < 0 || coordinates.xAxis > CellMatrix.length - 1) {
         return null;
@@ -49,9 +45,9 @@ export const getCellByCoordinates = (CellMatrix: CellMatrix, coordinates: Coordi
     return { ...CellMatrix[coordinates.xAxis][coordinates.yAxis] };
 };
 
-export const getCellNeighbours = (CellMatrix: CellMatrix, cell: Cell): Cell[] => {
+export const getCellNeighbours = (CellMatrix: CellMatrix, coordinates: Coordinates): Cell[] => {
     const neighbours: Cell[] = [];
-    const { xAxis, yAxis } = cell.coordinates;
+    const { xAxis, yAxis } = coordinates;
 
     for (let i = xAxis - 1; i <= xAxis + 1; i++) {
         for (let j = yAxis - 1; j <= yAxis + 1; j++) {
@@ -67,8 +63,8 @@ export const getCellNeighbours = (CellMatrix: CellMatrix, cell: Cell): Cell[] =>
     return neighbours;
 };
 
-export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cell: Cell): number => {
-    const neighbours: Cell[] = getCellNeighbours(CellMatrix, cell);
+export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cellCoordinates: Coordinates): number => {
+    const neighbours: Cell[] = getCellNeighbours(CellMatrix, cellCoordinates);
 
     return neighbours.reduce((acc, cell) => acc + (cell.state === 'alive' ? 1 : 0), 0);
 };
