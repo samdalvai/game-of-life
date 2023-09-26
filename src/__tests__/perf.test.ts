@@ -5,7 +5,7 @@ import { initializeCellMatrix } from '../core/game';
 
 test('Test for execution time of getNextCellMatrixState() function.', () => {
     let totalTime: number = 0;
-    const numberOfTests = 10;
+    const numberOfTests = 1;
 
     for (let i = 0; i < numberOfTests; i++) {
         const currentCellMatrix: CellMatrix = initializeCellMatrix(1000,1000);

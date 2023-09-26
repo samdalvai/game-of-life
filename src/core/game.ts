@@ -66,5 +66,13 @@ export const getCellNeighbours = (CellMatrix: CellMatrix, coordinates: Coordinat
 export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cellCoordinates: Coordinates): number => {
     const neighbours: Cell[] = getCellNeighbours(CellMatrix, cellCoordinates);
 
-    return neighbours.reduce((acc, cell) => acc + (cell.state === 'alive' ? 1 : 0), 0);
+    let neighboursAliveCount = 0;
+
+    for (let i = 0; i < neighbours.length; i++) {
+        if (neighbours[i].state === 'alive') {
+            neighboursAliveCount++;
+        }
+    }
+
+    return neighboursAliveCount;
 };
