@@ -64,13 +64,18 @@ export const getCellNeighbours = (CellMatrix: CellMatrix, coordinates: Coordinat
 };
 
 export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cellCoordinates: Coordinates): number => {
-    const neighbours: Cell[] = getCellNeighbours(CellMatrix, cellCoordinates);
-
     let neighboursAliveCount = 0;
 
-    for (let i = 0; i < neighbours.length; i++) {
-        if (neighbours[i].state === 'alive') {
-            neighboursAliveCount++;
+    const { xAxis, yAxis } = cellCoordinates;
+
+    for (let i = xAxis - 1; i <= xAxis + 1; i++) {
+        for (let j = yAxis - 1; j <= yAxis + 1; j++) {
+            if (!(i === xAxis && j === yAxis)) {
+                const neighbour: Cell | null = getCellByCoordinates(CellMatrix, { xAxis: i, yAxis: j });
+                if (neighbour?.state === 'alive') {
+                    neighboursAliveCount++;
+                }
+            }
         }
     }
 
