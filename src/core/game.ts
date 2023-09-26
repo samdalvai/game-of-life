@@ -42,7 +42,7 @@ export const getCellByCoordinates = (CellMatrix: CellMatrix, coordinates: Coordi
         return null;
     }
 
-    return { ...CellMatrix[coordinates.xAxis][coordinates.yAxis] };
+    return CellMatrix[coordinates.xAxis][coordinates.yAxis];
 };
 
 export const getCellNeighbours = (CellMatrix: CellMatrix, coordinates: Coordinates): Cell[] => {
