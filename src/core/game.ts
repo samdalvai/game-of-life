@@ -45,24 +45,6 @@ export const getCellByCoordinates = (CellMatrix: CellMatrix, coordinates: Coordi
     return CellMatrix[coordinates.xAxis][coordinates.yAxis];
 };
 
-export const getCellNeighbours = (CellMatrix: CellMatrix, coordinates: Coordinates): Cell[] => {
-    const neighbours: Cell[] = [];
-    const { xAxis, yAxis } = coordinates;
-
-    for (let i = xAxis - 1; i <= xAxis + 1; i++) {
-        for (let j = yAxis - 1; j <= yAxis + 1; j++) {
-            if (!(i === xAxis && j === yAxis)) {
-                const neighbour: Cell | null = getCellByCoordinates(CellMatrix, { xAxis: i, yAxis: j });
-                if (neighbour) {
-                    neighbours.push(neighbour);
-                }
-            }
-        }
-    }
-
-    return neighbours;
-};
-
 export const getCellNeighboursAliveCount = (CellMatrix: CellMatrix, cellCoordinates: Coordinates): number => {
     let neighboursAliveCount = 0;
 
