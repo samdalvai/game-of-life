@@ -5,16 +5,16 @@ import { initializeCellMatrix } from '../core/game';
 
 test('Test for execution time of getNextCellMatrixState() function.', () => {
     let totalTime: number = 0;
-    const numberOfTests = 20;
+    const numberOfTests = 1;
 
     for (let i = 0; i < numberOfTests; i++) {
-        const start: Date = new Date();
-        const currentCellMatrix: CellMatrix = initializeCellMatrix(100,100);
+        const start: number = performance.now();
+        const currentCellMatrix: CellMatrix = initializeCellMatrix(1000,1000);
         
         getNextCellMatrixState(currentCellMatrix);
-        const end: Date = new Date();
+        const end: number = performance.now();
     
-        const executionTime: number = end.getMilliseconds() - start.getMilliseconds();
+        const executionTime: number = end - start;
 
         totalTime += executionTime;
     }
