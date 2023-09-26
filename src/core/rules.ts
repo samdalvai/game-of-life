@@ -1,8 +1,8 @@
 import { Cell, CellState, CellMatrix, Coordinates } from "../types/game";
 import { getCellNeighboursAliveCount } from "./game";
 
-export const getCellNextState = (CellMatrix: CellMatrix, currentCell: Cell, cellCoordinates: Coordinates): CellState => {
-    const aliveNeighboursCount = getCellNeighboursAliveCount(CellMatrix, cellCoordinates);
+export const getCellNextState = (cellMatrix: CellMatrix, currentCell: Cell, cellCoordinates: Coordinates): CellState => {
+    const aliveNeighboursCount = getCellNeighboursAliveCount(cellMatrix, cellCoordinates);
 
     // Rule 1: Any live cell with two or three live neighbours lives on to the next generation.
     if (currentCell.state === 'alive' && aliveNeighboursCount === 2 || aliveNeighboursCount === 3) {
