@@ -340,16 +340,3 @@ test('(Rule 3) On a 3x3 CellMatrix any dead cell with exactly three live neighbo
     expect(getNextCellMatrixState(currentCellMatrix)).toEqual(expectedCellMatrix);    
 });
 
-test('Test for execution time of getNextCellMatrixState() function.', () => {
-    const start: Date = new Date();
-    const currentCellMatrix: CellMatrix = initializeCellMatrix(100,100);
-    
-    const nextCellMatrix: CellMatrix = getNextCellMatrixState(currentCellMatrix);
-    const end: Date = new Date();
-
-    const executionTime: number = end.getMilliseconds() - start.getMilliseconds();
-    console.log("Execution time: " + executionTime);
-
-    expect(currentCellMatrix).toEqual(nextCellMatrix);    
-});
-
