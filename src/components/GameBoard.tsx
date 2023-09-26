@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Cell, CellMatrix, CellState } from "../types/game";
+import { CellMatrix, CellState, Coordinates } from "../types/game";
 import { initializeCellMatrix } from "../core/game";
 import { getNextCellMatrixState } from "../core/rules";
 import TimedCounter from "./TimedCounter";
@@ -11,9 +11,9 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
     const [gameRunning, setGameRunning] = useState<boolean>(false);
 
-    const handleCellClick = (cell: Cell) => {
-        const nextState: CellState = cell.state === 'alive' ? 'dead' : 'alive';
-        const { xAxis, yAxis } = cell.coordinates;
+    const handleCellClick = (coordinates: Coordinates) => {
+        const { xAxis, yAxis } = coordinates;
+        const nextState: CellState = cellMatrix[xAxis][yAxis].state === 'alive' ? 'dead' : 'alive';
 
         const updatedCellMatrix: CellMatrix = [...cellMatrix];
         updatedCellMatrix[xAxis][yAxis].state = nextState;

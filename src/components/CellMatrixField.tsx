@@ -1,23 +1,22 @@
-import { CellCallBack } from "../types/callbacks";
+import { CoordinatesCallBack } from "../types/callbacks";
 import { Cell, CellMatrix } from "../types/game";
 import CellSquare from "./CellSquare";
 
-const CellMatrixField = ({ cellMatrix, onCellClick }: { cellMatrix: CellMatrix, onCellClick: CellCallBack }) => {
-    return <div>
-        {
-            cellMatrix.map((cellRow: Cell[], index: number) => <div key={'row-' + index} className="flex justify-center">
-                {
-                    cellRow.map((cell: Cell) => {
-                        const { xAxis, yAxis } = cell.coordinates;
-                        return <CellSquare
-                            key={'cell-' + xAxis + yAxis}
-                            cell={cell}
-                            onClick={() => onCellClick(cell)} />;
-                    })
-                }
-            </div>)
-        }
-    </div>;
+const CellMatrixField = ({ cellMatrix, onCellClick }: { cellMatrix: CellMatrix, onCellClick: CoordinatesCallBack }) => {
+	return <div>
+		{
+			cellMatrix.map((cellRow: Cell[], xAxis: number) => <div key={'row-' + xAxis} className="flex justify-center">
+				{
+					cellRow.map((cell: Cell, yAxis: number) => {
+						return <CellSquare
+							key={'cell-' + xAxis + yAxis}
+							cell={cell}
+							onClick={() => onCellClick({ xAxis: xAxis, yAxis: yAxis })} />;
+					})
+				}
+			</div>)
+		}
+	</div>;
 };
 
 export default CellMatrixField;
