@@ -8,9 +8,9 @@ test('Test for execution time of getNextCellMatrixState() function.', () => {
     const numberOfTests = 1;
 
     for (let i = 0; i < numberOfTests; i++) {
-        const start: number = performance.now();
         const currentCellMatrix: CellMatrix = initializeCellMatrix(1000,1000);
         
+        const start: number = performance.now();
         getNextCellMatrixState(currentCellMatrix);
         const end: number = performance.now();
     
