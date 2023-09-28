@@ -1,11 +1,11 @@
-import { useState } from "react";
-import { CellMatrix, CellState, Coordinates } from "../types/game";
-import { initializeCellMatrix } from "../core/game";
-import { getNextCellMatrixState } from "../core/rules";
-import TimedCounter from "./TimedCounter";
-import CellMatrixField from "./CellMatrixField";
-import Button from "./Button";
-import ZoomableWindow from "./ZoomableWindow";
+import { useState } from 'react';
+import { CellMatrix, CellState, Coordinates } from '../types/game';
+import { initializeCellMatrix } from '../core/game';
+import { getNextCellMatrixState } from '../core/rules';
+import TimedCounter from './TimedCounter';
+import CellMatrixField from './CellMatrixField';
+import Button from './Button';
+import ZoomableWindow from './ZoomableWindow';
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));

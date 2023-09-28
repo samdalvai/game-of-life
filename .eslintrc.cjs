@@ -18,5 +18,6 @@ module.exports = {
       "warn",
       "always"
     ],
+    "quotes": ["warn", "single"],
   },
 }

@@ -1,5 +1,5 @@
-import { CallBack } from "../types/callbacks";
-import { Cell } from "../types/game";
+import { CallBack } from '../types/callbacks';
+import { Cell } from '../types/game';
 
 const CellSquare = ({cell, onClick}: {cell: Cell, onClick: CallBack}) => {
     const cellColors = {
