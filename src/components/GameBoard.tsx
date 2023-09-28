@@ -34,7 +34,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setGameRunning((current) => !current);
     };
 
-    return <div className="w-full h-full flex flex-col justify-center">
+    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center">
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
