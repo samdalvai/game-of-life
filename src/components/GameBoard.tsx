@@ -34,7 +34,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setGameRunning((current) => !current);
     };
 
-    return <div className="w-full h-full flex flex-col justify-center">
+    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center pt-5">
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
@@ -55,7 +55,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
                 <Button text="Get next state" color="blue" onClick={handleGetNextState} />
             </div>
         </div>
-        {gameRunning && <TimedCounter interval={250} onCount={handleGetNextState} />}
+        {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
     </div>;
 };
 
