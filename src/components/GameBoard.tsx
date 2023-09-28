@@ -38,20 +38,22 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
-        <div className="py-3 w-full flex justify-between">
-            <div className="pe-1 w-full">
-                {
-                    !gameRunning ?
+        <div className="py-3 w-full flex-col md:flex">
+            <div className="pe-1 w-full md:w-2/3 flex">
+                <div className="px-1 w-1/2">
+                    {
+                        !gameRunning ?
 
-                        <Button text="Run game" color="green" onClick={handleRunGame} />
-                        :
-                        <Button text="Stop game" color="red" onClick={handleRunGame} />
-                }
+                            <Button text="Run game" color="green" onClick={handleRunGame} />
+                            :
+                            <Button text="Stop game" color="red" onClick={handleRunGame} />
+                    }
+                </div>
+                <div className="px-1 w-1/2">
+                    <Button text="Reset" color="gray" onClick={handleResetState} />
+                </div>
             </div>
-            <div className="px-1 w-full">
-                <Button text="Reset" color="gray" onClick={handleResetState} />
-            </div>
-            <div className="ps-1 w-full">
+            <div className="pt-2 md:pt-0 w-full md:w-1/3">
                 <Button text="Get next state" color="blue" onClick={handleGetNextState} />
             </div>
         </div>
