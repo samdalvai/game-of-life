@@ -6,11 +6,11 @@ function ZoomableWindow({ children }: { children: ChildrenProps }) {
     const [zoom, setZoom] = useState<number>(1);
 
     const handleZoomIn = () => {
-        setZoom(zoom + 0.1);
+        setZoom(zoom + 0.05);
     };
 
     const handleZoomOut = () => {
-        setZoom(zoom - 0.1);
+        setZoom(zoom - 0.05);
     };
 
     const ZoomButton = ({ onClick, sign }: { sign: '+' | '-', onClick: CallBack }) => {
