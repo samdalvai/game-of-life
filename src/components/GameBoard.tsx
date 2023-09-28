@@ -55,7 +55,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
                 <Button text="Get next state" color="blue" onClick={handleGetNextState} />
             </div>
         </div>
-        {gameRunning && <TimedCounter interval={10} onCount={handleGetNextState} />}
+        {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
     </div>;
 };
 
