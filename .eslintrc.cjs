@@ -19,5 +19,6 @@ module.exports = {
       "always"
     ],
     "quotes": ["warn", "single"],
+    "@typescript-eslint/no-unused-vars": "warn"
   },
 }

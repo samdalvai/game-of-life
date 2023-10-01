@@ -1,4 +1,4 @@
-import { Cell, Coordinates, CellMatrix } from '../types/game';
+import { Cell, Coordinates, CellMatrix, CellState } from '../types/game';
 
 export const initializeCellMatrix = (rows: number, columns: number): CellMatrix => {
     const cellMatrix: CellMatrix = [];
@@ -16,21 +16,24 @@ export const initializeCellMatrix = (rows: number, columns: number): CellMatrix 
     return cellMatrix;
 };
 
-export const getCellMatrixAsString = (cellMatrix: CellMatrix): string => {
-    let output = '';
-    for (let i = 0; i < cellMatrix.length; i++) {
-        output += '|';
-        for (let j = 0; j < cellMatrix[0].length; j++) {
-            output += (cellMatrix[i][j].state === 'alive' ? 'X' : ' ') + '|';
-        }
-        output += '\n';
-    }
-
-    return output;
+const getRandomState = (): CellState => {
+    return Math.round(Math.random()) % 2 === 0 ? 'dead' : 'alive';
 };
 
-export const printCellMatrix = (cellMatrix: CellMatrix): void => {
-    console.log(getCellMatrixAsString(cellMatrix));
+const initializeRandomCellMatrix = (rows: number, columns: number): CellMatrix => {
+    const cellMatrix: CellMatrix = [];
+
+    for (let i = 0; i < rows; i++) {
+        const row: Cell[] = [];
+
+        for (let j = 0; j < columns; j++) {
+            row.push({ state: getRandomState() });
+        }
+
+        cellMatrix.push(row);
+    }
+
+    return cellMatrix;
 };
 
 export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordinates): Cell | null => {
@@ -62,4 +65,21 @@ export const getCellNeighboursAliveCount = (cellMatrix: CellMatrix, cellCoordina
     }
 
     return neighboursAliveCount;
+};
+
+export const getCellMatrixAsString = (cellMatrix: CellMatrix): string => {
+    let output = '';
+    for (let i = 0; i < cellMatrix.length; i++) {
+        output += '|';
+        for (let j = 0; j < cellMatrix[0].length; j++) {
+            output += (cellMatrix[i][j].state === 'alive' ? 'X' : ' ') + '|';
+        }
+        output += '\n';
+    }
+
+    return output;
+};
+
+export const printCellMatrix = (cellMatrix: CellMatrix): void => {
+    console.log(getCellMatrixAsString(cellMatrix));
 };
