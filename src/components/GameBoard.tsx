@@ -41,13 +41,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         <div className="py-3 w-full flex flex-col md:flex-row">
             <div className="w-full md:w-2/3 flex">
                 <div className="w-1/2 pe-1">
-                    {
-                        !gameRunning ?
-
-                            <Button text="Run game" color="green" onClick={handleRunGame} />
-                            :
-                            <Button text="Stop game" color="red" onClick={handleRunGame} />
-                    }
+                    <Button text={!gameRunning ? 'Run game' : 'Stop game'} color={!gameRunning ? 'green' : 'red'} onClick={handleRunGame} />
                 </div>
                 <div className="ps-1 md:pe-1 w-1/2">
                     <Button text="Reset" color="gray" onClick={handleResetState} />
