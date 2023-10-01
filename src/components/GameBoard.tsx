@@ -34,7 +34,10 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setGameRunning((current) => !current);
     };
 
-    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center pt-5">
+    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center">
+        <div className="flex justify-center pt-5 pb-2">
+            <h1 className="text-lg text-blue-600 font-bold">Game of Life</h1>
+        </div>
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>

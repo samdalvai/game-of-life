@@ -9,7 +9,7 @@ const Button = ({ text, color, onClick }: { text: string, color: ButtonColor, on
         red: 'bg-red-500 hover:bg-red-600'
     };
 
-    return <button className={`px-4 py-2 w-full text-white rounded ${buttonColors[color]}`} onClick={onClick}>
+    return <button className={`px-4 py-2 w-full font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
         {text}
     </button>;
 };

@@ -15,15 +15,15 @@ function ZoomableWindow({ children }: { children: ChildrenProps }) {
 
     const ZoomButton = ({ onClick, sign }: { sign: '+' | '-', onClick: CallBack }) => {
         return <button
-            className="flex items-center justify-center w-10 h-10 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2"
+            className="flex items-center justify-center w-8 h-8 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2"
             onClick={onClick}
         >
-            <span className="text-xl">{sign}</span>
+            <span className="flex items-center text-xl pb-1">{sign}</span>
         </button>;
     };
 
     return (
-        <div className="w-full h-full overflow-hidden border border-gray-500 relative shadow-md">
+        <div className="w-full h-full overflow-hidden border rounded-sm border-gray-500 relative shadow-md">
             <div
                 className="w-full h-full flex items-center justify-center transform origin-center transition-transform"
                 style={{ transform: `scale(${zoom})` }}
