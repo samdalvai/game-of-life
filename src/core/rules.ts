@@ -1,8 +1,8 @@
 import { Cell, CellState, CellMatrix, Coordinates } from '../types/game';
 import { getCellNeighboursAliveCount } from './game';
 
-export const getCellNextState = (cellMatrix: CellMatrix, currentCell: Cell, cellCoordinates: Coordinates): CellState => {
-    const aliveNeighboursCount = getCellNeighboursAliveCount(cellMatrix, cellCoordinates);
+export const getCellNextState = (cellMatrix: CellMatrix, currentCell: Cell, cellCoordinates: Coordinates, infiniteBoard: boolean = false): CellState => {
+    const aliveNeighboursCount = getCellNeighboursAliveCount(cellMatrix, cellCoordinates, infiniteBoard);
 
     // Rule 1: Any live cell with two or three live neighbours lives on to the next generation.
     if (currentCell.state === 'alive' && aliveNeighboursCount === 2 || aliveNeighboursCount === 3) {
@@ -22,7 +22,7 @@ export const getCellNextState = (cellMatrix: CellMatrix, currentCell: Cell, cell
     return 'dead';
 };
 
-export const getNextCellMatrixState = (currentCellMatrix: CellMatrix): CellMatrix => {
+export const getNextCellMatrixState = (currentCellMatrix: CellMatrix, infiniteBoard: boolean = false): CellMatrix => {
     const nextCellMatrix: CellMatrix = [];
 
     for (let i = 0; i < currentCellMatrix.length; i++) {
@@ -30,7 +30,7 @@ export const getNextCellMatrixState = (currentCellMatrix: CellMatrix): CellMatri
 
         for (let j = 0; j < currentCellMatrix[0].length; j++) {
             const currentCell: Cell = currentCellMatrix[i][j];
-            const nextCellState: CellState = getCellNextState(currentCellMatrix, currentCell, { xAxis: i, yAxis: j });
+            const nextCellState: CellState = getCellNextState(currentCellMatrix, currentCell, { xAxis: i, yAxis: j }, infiniteBoard);
 
             if (currentCell.state !== nextCellState) {
                 row.push({ ...currentCell, state: nextCellState });

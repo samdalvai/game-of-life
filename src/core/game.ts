@@ -20,7 +20,7 @@ const getRandomState = (): CellState => {
     return Math.round(Math.random()) % 2 === 0 ? 'dead' : 'alive';
 };
 
-export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordinates): Cell | null => {
+export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordinates, infiniteBoard: boolean = false): Cell | null => {
     if (coordinates.xAxis < 0 || coordinates.xAxis > cellMatrix.length - 1) {
         return null;
     }
@@ -32,7 +32,7 @@ export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordi
     return cellMatrix[coordinates.xAxis][coordinates.yAxis];
 };
 
-export const getCellNeighboursAliveCount = (cellMatrix: CellMatrix, cellCoordinates: Coordinates): number => {
+export const getCellNeighboursAliveCount = (cellMatrix: CellMatrix, cellCoordinates: Coordinates, infiniteBoard: boolean = false): number => {
     let neighboursAliveCount = 0;
 
     const { xAxis, yAxis } = cellCoordinates;
@@ -40,7 +40,7 @@ export const getCellNeighboursAliveCount = (cellMatrix: CellMatrix, cellCoordina
     for (let i = xAxis - 1; i <= xAxis + 1; i++) {
         for (let j = yAxis - 1; j <= yAxis + 1; j++) {
             if (!(i === xAxis && j === yAxis)) {
-                const neighbour: Cell | null = getCellByCoordinates(cellMatrix, { xAxis: i, yAxis: j });
+                const neighbour: Cell | null = getCellByCoordinates(cellMatrix, { xAxis: i, yAxis: j }, infiniteBoard);
                 if (neighbour?.state === 'alive') {
                     neighboursAliveCount++;
                 }
