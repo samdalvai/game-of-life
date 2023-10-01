@@ -5,7 +5,7 @@ const Button = ({ text, color, onClick }: { text: string, color: ButtonColor, on
     const buttonColors = {
         blue: 'bg-blue-500 hover:bg-blue-600',
         gray: 'bg-gray-500 hover:bg-gray-600',
-        green: 'bg-green-700 hover:bg-blue-800',
+        green: 'bg-green-700 hover:bg-green-800',
         red: 'bg-red-500 hover:bg-red-600'
     };
 
