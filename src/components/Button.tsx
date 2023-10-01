@@ -6,8 +6,9 @@ const Button = ({ text, icon, color, onClick }: { text: string, icon?: ReactNode
     const buttonColors = {
         blue: 'bg-blue-500 hover:bg-blue-600 focus:ring-blue-800',
         gray: 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-800',
-        green: 'bg-green-700 hover:bg-green-800 focus:ring-green-1000',
-        red: 'bg-red-500 hover:bg-red-600 focus:ring-red-800'
+        green: 'bg-green-600 hover:bg-green-700 focus:ring-green-900',
+        red: 'bg-red-500 hover:bg-red-600 focus:ring-red-800',
+        indigo: 'bg-indigo-500 hover:bg-indigo-600 focus:ring-indigo-800',
     };
 
     return <button className={`focus:ring-1 px-4 py-2 w-full text-sm font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
