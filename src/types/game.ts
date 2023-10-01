@@ -1,4 +1,4 @@
-export type CellState = "dead" | "alive"
+export type CellState = 'dead' | 'alive'
 
 export interface Cell {
     state: CellState

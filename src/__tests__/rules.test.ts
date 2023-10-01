@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { getCellNextState, getNextCellMatrixState } from "../core/rules";
+import { getCellNextState, getNextCellMatrixState } from '../core/rules';
 import { CellMatrix } from '../types/game';
 import { initializeCellMatrix } from '../core/game';
 

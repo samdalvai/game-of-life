@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { initializeCellMatrix, getCellByCoordinates, getCellNeighboursAliveCount } from "../core/game";
+import { initializeCellMatrix, getCellByCoordinates, getCellNeighboursAliveCount } from '../core/game';
 import { Cell, CellMatrix } from '../types/game';
 
 test('Should initialize a dead cell', () => {

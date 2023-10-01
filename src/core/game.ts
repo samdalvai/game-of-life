@@ -1,4 +1,4 @@
-import { Cell, Coordinates, CellMatrix } from "../types/game";
+import { Cell, Coordinates, CellMatrix } from '../types/game';
 
 export const initializeCellMatrix = (rows: number, columns: number): CellMatrix => {
     const cellMatrix: CellMatrix = [];

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest';
-import { getNextCellMatrixState } from "../core/rules";
+import { getNextCellMatrixState } from '../core/rules';
 import { CellMatrix } from '../types/game';
 import { initializeCellMatrix } from '../core/game';
 
@@ -21,7 +21,7 @@ test('Test for execution time of getNextCellMatrixState() function.', () => {
 
     const medianTime = totalTime / numberOfTests;
 
-    console.log("Medium Execution time: " + medianTime + " ms");
+    console.log('Medium Execution time: ' + medianTime + ' ms');
 
     expect(true).toEqual(true);    
 });

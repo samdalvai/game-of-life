@@ -1,5 +1,5 @@
-import { Cell, CellState, CellMatrix, Coordinates } from "../types/game";
-import { getCellNeighboursAliveCount } from "./game";
+import { Cell, CellState, CellMatrix, Coordinates } from '../types/game';
+import { getCellNeighboursAliveCount } from './game';
 
 export const getCellNextState = (cellMatrix: CellMatrix, currentCell: Cell, cellCoordinates: Coordinates): CellState => {
     const aliveNeighboursCount = getCellNeighboursAliveCount(cellMatrix, cellCoordinates);

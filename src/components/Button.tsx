@@ -1,5 +1,5 @@
-import { CallBack } from "../types/callbacks";
-import { ButtonColor } from "../types/components";
+import { CallBack } from '../types/callbacks';
+import { ButtonColor } from '../types/components';
 
 const Button = ({ text, color, onClick }: { text: string, color: ButtonColor, onClick: CallBack }) => {
     const buttonColors = {
