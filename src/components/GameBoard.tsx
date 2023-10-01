@@ -6,6 +6,7 @@ import TimedCounter from './TimedCounter';
 import CellMatrixField from './CellMatrixField';
 import Button from './Button';
 import ZoomableWindow from './ZoomableWindow';
+import { DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../icons/Icons';
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -44,14 +45,26 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         <div className="py-3 w-full flex flex-col md:flex-row">
             <div className="w-full md:w-2/3 flex">
                 <div className="w-1/2 pe-1">
-                    <Button text={!gameRunning ? 'Run game' : 'Stop game'} color={!gameRunning ? 'green' : 'red'} onClick={handleRunGame} />
+                    <Button
+                        text={!gameRunning ? 'Run game' : 'Stop game'}
+                        icon={!gameRunning ? <PlayIcon /> : <PauseIcon />}
+                        color={!gameRunning ? 'green' : 'red'}
+                        onClick={handleRunGame} />
                 </div>
                 <div className="ps-1 md:pe-1 w-1/2">
-                    <Button text="Reset" color="gray" onClick={handleResetState} />
+                    <Button
+                        text="Reset"
+                        icon={<DeleteIcon />}
+                        color="gray"
+                        onClick={handleResetState} />
                 </div>
             </div>
             <div className="pt-2 md:ps-1 md:pt-0 w-full md:w-1/3">
-                <Button text="Get next state" color="blue" onClick={handleGetNextState} />
+                <Button
+                    text="Get next state"
+                    icon={<NextIcon />}
+                    color="blue"
+                    onClick={handleGetNextState} />
             </div>
         </div>
         {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
