@@ -1,13 +1,13 @@
 import { Cell, Coordinates, CellMatrix, CellState } from '../types/game';
 
-export const initializeCellMatrix = (rows: number, columns: number): CellMatrix => {
+export const initializeCellMatrix = (rows: number, columns: number, random: boolean = false): CellMatrix => {
     const cellMatrix: CellMatrix = [];
 
     for (let i = 0; i < rows; i++) {
         const row: Cell[] = [];
 
         for (let j = 0; j < columns; j++) {
-            row.push({ state: 'dead' });
+            row.push({ state: !random ? 'dead' : getRandomState() });
         }
 
         cellMatrix.push(row);
@@ -18,22 +18,6 @@ export const initializeCellMatrix = (rows: number, columns: number): CellMatrix 
 
 const getRandomState = (): CellState => {
     return Math.round(Math.random()) % 2 === 0 ? 'dead' : 'alive';
-};
-
-export const initializeRandomCellMatrix = (rows: number, columns: number): CellMatrix => {
-    const cellMatrix: CellMatrix = [];
-
-    for (let i = 0; i < rows; i++) {
-        const row: Cell[] = [];
-
-        for (let j = 0; j < columns; j++) {
-            row.push({ state: getRandomState() });
-        }
-
-        cellMatrix.push(row);
-    }
-
-    return cellMatrix;
 };
 
 export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordinates): Cell | null => {

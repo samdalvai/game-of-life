@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CellMatrix, CellState, Coordinates } from '../types/game';
-import { initializeCellMatrix, initializeRandomCellMatrix } from '../core/game';
+import { initializeCellMatrix } from '../core/game';
 import { getNextCellMatrixState } from '../core/rules';
 import TimedCounter from './TimedCounter';
 import CellMatrixField from './CellMatrixField';
@@ -36,7 +36,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     };
 
     const handleRandomizeState = () => {
-        setCellMatrix(initializeRandomCellMatrix(rows, columns));
+        setCellMatrix(initializeCellMatrix(rows, columns, true));
     };
 
     return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center">
