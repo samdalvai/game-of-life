@@ -10,7 +10,9 @@ const Button = ({ text, color, onClick }: { text: string, color: ButtonColor, on
     };
 
     return <button className={`px-4 py-2 w-full font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
-        {text}
+        <span className="flex justify-center items-center">
+            {text}
+        </span>
     </button>;
 };
 
