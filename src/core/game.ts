@@ -20,7 +20,7 @@ const getRandomState = (): CellState => {
     return Math.round(Math.random()) % 2 === 0 ? 'dead' : 'alive';
 };
 
-const initializeRandomCellMatrix = (rows: number, columns: number): CellMatrix => {
+export const initializeRandomCellMatrix = (rows: number, columns: number): CellMatrix => {
     const cellMatrix: CellMatrix = [];
 
     for (let i = 0; i < rows; i++) {
