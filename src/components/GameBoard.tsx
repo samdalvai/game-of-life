@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { CellMatrix, CellState, Coordinates } from '../types/game';
-import { initializeCellMatrix } from '../core/game';
+import { initializeCellMatrix, initializeRandomCellMatrix } from '../core/game';
 import { getNextCellMatrixState } from '../core/rules';
 import TimedCounter from './TimedCounter';
 import CellMatrixField from './CellMatrixField';
@@ -22,8 +22,8 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setCellMatrix(updatedCellMatrix);
     };
 
-    const handleGetNextState = () => {
-        setCellMatrix((current) => getNextCellMatrixState(current));
+    const handleRunGame = () => {
+        setGameRunning((current) => !current);
     };
 
     const handleResetState = () => {
@@ -31,8 +31,12 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setGameRunning(false);
     };
 
-    const handleRunGame = () => {
-        setGameRunning((current) => !current);
+    const handleGetNextState = () => {
+        setCellMatrix((current) => getNextCellMatrixState(current));
+    };
+
+    const handleRandomizeState = () => {
+        setCellMatrix(initializeRandomCellMatrix(rows, columns));
     };
 
     return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center">
@@ -42,33 +46,46 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
-        <div className="py-3 w-full flex flex-col md:flex-row">
-            <div className="w-full md:w-2/3 flex">
-                <div className="w-1/2 pe-1">
+        <div className="pt-3 w-full flex flex-col md:flex-row">
+            <div className="w-full md:w-1/2 flex md:pe-1">
+                <div className="pe-1 w-1/2">
                     <Button
                         text={!gameRunning ? 'Run game' : 'Stop game'}
                         icon={!gameRunning ? <PlayIcon /> : <PauseIcon />}
                         color={!gameRunning ? 'green' : 'red'}
-                        onClick={handleRunGame} />
+                        onClick={handleRunGame}
+                    />
                 </div>
-                <div className="ps-1 md:pe-1 w-1/2">
+                <div className="ps-1 w-1/2">
                     <Button
                         text="Reset"
                         icon={<DeleteIcon />}
                         color="gray"
-                        onClick={handleResetState} />
+                        onClick={handleResetState}
+                    />
                 </div>
             </div>
-            <div className="pt-2 md:ps-1 md:pt-0 w-full md:w-1/3">
-                <Button
-                    text="Get next state"
-                    icon={<NextIcon />}
-                    color="blue"
-                    onClick={handleGetNextState} />
+            <div className="w-full md:w-1/2 flex pt-2 md:ps-1 md:pt-0">
+                <div className="pe-1 w-1/2">
+                    <Button
+                        text="Get next state"
+                        icon={<NextIcon />}
+                        color="blue"
+                        onClick={handleGetNextState}
+                    />
+                </div>
+                <div className="ps-1 w-1/2">
+                    <Button
+                        text="Randomize"
+                        icon={<UpdateIcon />}
+                        color="indigo"
+                        onClick={handleRandomizeState}
+                    />
+                </div>
             </div>
         </div>
         {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
-    </div>;
+    </div >;
 };
 
 export default GameBoard;
