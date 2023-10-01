@@ -7,7 +7,7 @@ const CellSquare = ({cell, onClick}: {cell: Cell, onClick: CallBack}) => {
         dead: 'bg-white'
     };
 
-    return <div className={`w-10 h-10 flex-shrink-0 border-solid border border-slate-500 rounded-sm cursor-pointer ${cellColors[cell.state]}`} onClick={onClick}/>;
+    return <div className={`w-10 h-10 flex-shrink-0 border-solid border border-slate-500 rounded-sm cursor-pointer ${cellColors[cell.state]} ${cell.state === 'alive' ? 'hover:bg-red-400' : 'hover:bg-green-500'}`} onClick={onClick}/>;
 };
 
 export default CellSquare;
