@@ -21,15 +21,41 @@ const getRandomState = (): CellState => {
 };
 
 export const getCellByCoordinates = (cellMatrix: CellMatrix, coordinates: Coordinates, infiniteBoard: boolean = false): Cell | null => {
-    if (coordinates.xAxis < 0 || coordinates.xAxis > cellMatrix.length - 1) {
-        return null;
+    let { xAxis, yAxis } = coordinates;
+
+    if (xAxis < 0) {
+        if (!infiniteBoard) {
+            return null;
+        }
+
+        xAxis = cellMatrix.length - 1;
     }
 
-    if (coordinates.yAxis < 0 || coordinates.yAxis > cellMatrix[0].length - 1) {
-        return null;
+    if (xAxis > cellMatrix.length - 1) {
+        if (!infiniteBoard) {
+            return null;
+        }
+
+        xAxis = 0;
     }
 
-    return cellMatrix[coordinates.xAxis][coordinates.yAxis];
+    if (yAxis < 0) {
+        if (!infiniteBoard) {
+            return null;
+        }
+
+        yAxis = cellMatrix[0].length - 1;
+    }
+
+    if (yAxis > cellMatrix[0].length - 1) {
+        if (!infiniteBoard) {
+            return null;
+        }
+
+        yAxis = 0;
+    }
+
+    return cellMatrix[xAxis][yAxis];
 };
 
 export const getCellNeighboursAliveCount = (cellMatrix: CellMatrix, cellCoordinates: Coordinates, infiniteBoard: boolean = false): number => {
