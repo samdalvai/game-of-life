@@ -35,7 +35,7 @@ const GameBoardMenu = ({ gameRunning, onRun, onReset, onNext, onRandomize }: { g
                 <Button
                     text="Randomize"
                     icon={<UpdateIcon />}
-                    color="indigo"
+                    color="orange"
                     onClick={onRandomize}
                 />
             </div>
