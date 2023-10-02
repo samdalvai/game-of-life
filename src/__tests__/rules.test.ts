@@ -21,7 +21,7 @@ test('(Rule 1) Any live cell with two live neighbours lives on to the next gener
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 })).toEqual('alive');
+    expect(getCellNextState(CellMatrix, 'alive', { xAxis: 1, yAxis: 1 })).toEqual('alive');
 });
 
 test('(Rule 1) Any live cell with three live neighbours lives on to the next generation.', () => {
@@ -42,7 +42,7 @@ test('(Rule 1) Any live cell with three live neighbours lives on to the next gen
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 } )).toEqual('alive');
+    expect(getCellNextState(CellMatrix, 'alive', { xAxis: 1, yAxis: 1 } )).toEqual('alive');
 });
 
 test('(Rule 2) Any live cell with more than three live neighbours dies, as if by overpopulation.', () => {
@@ -63,7 +63,7 @@ test('(Rule 2) Any live cell with more than three live neighbours dies, as if by
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'alive'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
+    expect(getCellNextState(CellMatrix, 'alive', { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('(Rule 3) Any dead cell with exactly three live neighbours becomes a live cell, as if by reproduction.', () => {
@@ -84,7 +84,7 @@ test('(Rule 3) Any dead cell with exactly three live neighbours becomes a live c
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('alive');
+    expect(getCellNextState(CellMatrix, 'dead', { xAxis: 1, yAxis: 1 } )).toEqual('alive');
 });
 
 test('Any dead cell with less than three live neighbours remains dead.', () => {
@@ -105,7 +105,7 @@ test('Any dead cell with less than three live neighbours remains dead.', () => {
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
+    expect(getCellNextState(CellMatrix, 'dead', { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('Any dead cell with more than three live neighbours remains dead.', () => {
@@ -126,7 +126,7 @@ test('Any dead cell with more than three live neighbours remains dead.', () => {
             { state: 'alive' }
         ]
     ];
-    expect(getCellNextState(CellMatrix, { state: 'dead'}, { xAxis: 1, yAxis: 1 } )).toEqual('dead');
+    expect(getCellNextState(CellMatrix, 'dead', { xAxis: 1, yAxis: 1 } )).toEqual('dead');
 });
 
 test('A 2x2 CellMatrix with only dead cells should not spawn any new cell.', () => {
