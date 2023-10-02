@@ -3,7 +3,7 @@ import { Cell, CellMatrix } from '../types/game';
 import CellSquare from './CellSquare';
 
 const CellMatrixField = ({ cellMatrix, onCellClick }: { cellMatrix: CellMatrix, onCellClick: CoordinatesCallBack }) => {
-	return <div>
+	return <div className="border-2 border-black">
 		{
 			cellMatrix.map((cellRow: Cell[], xAxis: number) => <div key={'row-' + xAxis} className="flex justify-center">
 				{

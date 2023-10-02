@@ -38,12 +38,12 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         setCellMatrix(initializeCellMatrix(rows, columns, true));
     };
 
-    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center bg-white">
+    return <div className="w-full h-full xl:w-2/3 flex flex-col justify-center">
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
         <GameBoardMenu
-            gameRunning={false}
+            gameRunning={gameRunning}
             onRun={handleRunGame}
             onReset={handleResetState}
             onNext={handleGetNextState}

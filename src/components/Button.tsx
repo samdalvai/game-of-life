@@ -11,7 +11,7 @@ const Button = ({ text, icon, color, onClick }: { text: string, icon?: ReactNode
         indigo: 'bg-indigo-500 hover:bg-indigo-600 focus:ring-indigo-800',
     };
 
-    return <button className={`focus:ring-1 px-4 py-2 w-full text-sm font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
+    return <button className={`border border-black focus:ring-1 px-4 py-2 w-full text-sm font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
         <span className="flex justify-center items-center">
             <span className="pe-1">{icon}</span>
             {text}
