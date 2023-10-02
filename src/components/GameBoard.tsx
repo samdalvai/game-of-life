@@ -4,9 +4,8 @@ import { initializeCellMatrix } from '../core/game';
 import { getNextCellMatrixState } from '../core/rules';
 import TimedCounter from './TimedCounter';
 import CellMatrixField from './CellMatrixField';
-import Button from './Button';
 import ZoomableWindow from './ZoomableWindow';
-import { DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../icons/Icons';
+import GameBoardMenu from './GameBoardMenu';
 
 const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
@@ -43,44 +42,12 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
         <ZoomableWindow>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
-        <div className="pt-3 w-full flex flex-col md:flex-row">
-            <div className="w-full md:w-1/2 flex md:pe-1">
-                <div className="pe-1 w-1/2">
-                    <Button
-                        text={!gameRunning ? 'Run game' : 'Stop game'}
-                        icon={!gameRunning ? <PlayIcon /> : <PauseIcon />}
-                        color={!gameRunning ? 'green' : 'red'}
-                        onClick={handleRunGame}
-                    />
-                </div>
-                <div className="ps-1 w-1/2">
-                    <Button
-                        text="Reset"
-                        icon={<DeleteIcon />}
-                        color="gray"
-                        onClick={handleResetState}
-                    />
-                </div>
-            </div>
-            <div className="w-full md:w-1/2 flex pt-2 md:ps-1 md:pt-0">
-                <div className="pe-1 w-1/2">
-                    <Button
-                        text="Get next state"
-                        icon={<NextIcon />}
-                        color="blue"
-                        onClick={handleGetNextState}
-                    />
-                </div>
-                <div className="ps-1 w-1/2">
-                    <Button
-                        text="Randomize"
-                        icon={<UpdateIcon />}
-                        color="indigo"
-                        onClick={handleRandomizeState}
-                    />
-                </div>
-            </div>
-        </div>
+        <GameBoardMenu
+            gameRunning={false}
+            onRun={handleRunGame}
+            onReset={handleResetState}
+            onNext={handleGetNextState}
+            onRandomize={handleRandomizeState} />
         {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
     </div >;
 };
