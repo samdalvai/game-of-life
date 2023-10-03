@@ -27,23 +27,31 @@ const MainMenu = () => {
         setGameBoardSize({ ...gameBoardSize, [event.target.name]: newValue });
     };
 
-    return <div className="w-full h-2/3 md:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm">
-        <h1 className="font-bold text-xl py-3 text-blue-600">Game of Life</h1>
+    return <div className="w-full h-2/3 lg:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm border border-black">
+        <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         <GameLogo />
         <div className="pt-4 pb-2">
-            <Button text="Start game" color="blue" onClick={handleStartGame} />
-            <NumberInput
-                value={gameBoardSize.rows}
-                label="Rows"
-                name="rows"
-                onChange={handleGameBoardSizeChange}
-            />
-            <NumberInput
-                value={gameBoardSize.columns}
-                label="Columns"
-                name="columns"
-                onChange={handleGameBoardSizeChange}
-            />
+            <div className="px-2">
+                <Button text="Start game" color="blue" onClick={handleStartGame} />
+            </div>
+            <div className="flex py-2 px-2">
+                <div className="pe-1">
+                    <NumberInput
+                        value={gameBoardSize.rows}
+                        label="Rows"
+                        name="rows"
+                        onChange={handleGameBoardSizeChange}
+                    />
+                </div>
+                <div className="ps-1">
+                    <NumberInput
+                        value={gameBoardSize.columns}
+                        label="Columns"
+                        name="columns"
+                        onChange={handleGameBoardSizeChange}
+                    />
+                </div>
+            </div>
         </div>
     </div>;
 };

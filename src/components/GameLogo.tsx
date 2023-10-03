@@ -3,7 +3,7 @@ const GameLogo = () => {
         return <div className={`w-10 h-10 ${color === 'black' ? 'bg-black' : 'bg-white'} flex-shrink-0 border-solid border border-slate-500 rounded-sm`} />;
     };
 
-    return <div>
+    return <div className="shadow-md">
         <div className="flex justify-center">
             <Square color="white" />
             <Square color="black" />

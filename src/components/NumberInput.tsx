@@ -1,6 +1,6 @@
 const NumberInput = ({ value, name, label, onChange }: { value: number, name: string, label: string, onChange: React.ChangeEventHandler<HTMLInputElement> }) => {
     return <div className="w-full">
-        <label className="block text-gray-600">{label}</label>
+        <label className="block text-blue-600">{label}</label>
         <input
             type="number"
             name={name}
