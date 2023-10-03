@@ -18,7 +18,7 @@ const MainMenu = () => {
         return <GameBoard
             rows={gameBoardSize.rows}
             columns={gameBoardSize.columns}
-            infiniteGameBoard={infiniteGameBoard}
+            infiniteGameBoard={infiniteGameBoard} onBack={() => setStartGame(false)}
         />;
     }
 

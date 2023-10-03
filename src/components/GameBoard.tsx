@@ -6,8 +6,9 @@ import TimedCounter from './TimedCounter';
 import CellMatrixField from './CellMatrixField';
 import ZoomableWindow from './ZoomableWindow';
 import GameBoardMenu from './GameBoardMenu';
+import { CallBack } from '../types/callbacks';
 
-const GameBoard = ({ rows, columns, infiniteGameBoard }: { rows: number, columns: number, infiniteGameBoard: boolean }) => {
+const GameBoard = ({ rows, columns, infiniteGameBoard, onBack }: { rows: number, columns: number, infiniteGameBoard: boolean, onBack: CallBack }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
     const [gameRunning, setGameRunning] = useState<boolean>(false);
 
@@ -47,7 +48,9 @@ const GameBoard = ({ rows, columns, infiniteGameBoard }: { rows: number, columns
             onRun={handleRunGame}
             onReset={handleResetState}
             onNext={handleGetNextState}
-            onRandomize={handleRandomizeState} />
+            onRandomize={handleRandomizeState} 
+            onBack={onBack}
+            />
         {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
     </div >;
 };

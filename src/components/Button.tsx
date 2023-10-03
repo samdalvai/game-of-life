@@ -10,6 +10,7 @@ const Button = ({ text, icon, color, onClick }: { text?: string, icon?: ReactNod
         red: 'bg-red-500 hover:bg-red-600 focus:ring-red-800',
         indigo: 'bg-indigo-500 hover:bg-indigo-600 focus:ring-indigo-800',
         orange: 'bg-orange-500 hover:bg-orange-600 focus:ring-orange-800',
+        yellow: 'bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-700',
     };
 
     return <button className={`border border-black focus:ring-1 px-4 py-2 w-full text-sm font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>

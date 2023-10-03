@@ -1,23 +1,23 @@
 import Button from './Button';
-import { DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../icons/Icons';
+import { BackIcon, DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../icons/Icons';
 import { CallBack } from '../types/callbacks';
 
-const GameBoardMenu = ({ gameRunning, onRun, onReset, onNext, onRandomize }: { gameRunning: boolean, onRun: CallBack, onReset: CallBack, onNext: CallBack, onRandomize: CallBack }) => {
+const GameBoardMenu = ({ gameRunning, onRun, onReset, onNext, onRandomize, onBack }: { gameRunning: boolean, onRun: CallBack, onReset: CallBack, onNext: CallBack, onRandomize: CallBack, onBack: CallBack }) => {
     return <div className="pt-3 w-full flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 flex md:pe-1">
             <div className="pe-1 w-1/2">
                 <Button
-                    text={!gameRunning ? 'Run game' : 'Stop game'}
                     icon={!gameRunning ? <PlayIcon /> : <PauseIcon />}
-                    color={!gameRunning ? 'green' : 'red'}
+                    color={!gameRunning ? 'green' : 'yellow'}
+                    text={!gameRunning ? 'Run' : 'Pause'}
                     onClick={onRun}
                 />
             </div>
             <div className="ps-1 w-1/2">
                 <Button
-                    text="Reset"
                     icon={<DeleteIcon />}
                     color="gray"
+                    text="Reset"
                     onClick={onReset}
                 />
             </div>
@@ -25,18 +25,26 @@ const GameBoardMenu = ({ gameRunning, onRun, onReset, onNext, onRandomize }: { g
         <div className="w-full md:w-1/2 flex pt-2 md:ps-1 md:pt-0">
             <div className="pe-1 w-1/2">
                 <Button
-                    text="Get next state"
                     icon={<NextIcon />}
                     color="blue"
+                    text="Next state"
                     onClick={onNext}
+                />
+            </div>
+            <div className="px-1 w-1/2">
+                <Button
+                    icon={<UpdateIcon />}
+                    color="orange"
+                    text="Random"
+                    onClick={onRandomize}
                 />
             </div>
             <div className="ps-1 w-1/2">
                 <Button
-                    text="Randomize"
-                    icon={<UpdateIcon />}
-                    color="orange"
-                    onClick={onRandomize}
+                    icon={<BackIcon />}
+                    color="blue"
+                    text="Back"
+                    onClick={onBack}
                 />
             </div>
         </div>
