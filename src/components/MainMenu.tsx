@@ -4,6 +4,7 @@ import Button from './Button';
 import GameBoard from './GameBoard';
 import NumberInput from './NumberInput';
 import { GameBoardSize } from '../types/game';
+import CheckBoxInput from './CheckBoxInput';
 
 const MainMenu = () => {
     const [startGame, setStartGame] = useState<boolean>(false);
@@ -11,6 +12,7 @@ const MainMenu = () => {
         rows: 40,
         columns: 60
     });
+    const [infiniteGameBoard, setInfiniteGameBoard] = useState<boolean>(false);
 
     if (startGame) {
         return <GameBoard rows={gameBoardSize.rows} columns={gameBoardSize.columns} />;
@@ -43,12 +45,20 @@ const MainMenu = () => {
                         onChange={handleGameBoardSizeChange}
                     />
                 </div>
-                <div className="ps-1">
+                <div className="px-1">
                     <NumberInput
                         value={gameBoardSize.columns}
                         label="Columns"
                         name="columns"
                         onChange={handleGameBoardSizeChange}
+                    />
+                </div>
+                <div className="ps-1">
+                    <CheckBoxInput
+                        checked={infiniteGameBoard}
+                        label="Infinite board"
+                        name="infinite-board"
+                        onChange={() => setInfiniteGameBoard((current) => !current)}
                     />
                 </div>
             </div>
