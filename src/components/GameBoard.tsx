@@ -7,7 +7,7 @@ import CellMatrixField from './CellMatrixField';
 import ZoomableWindow from './ZoomableWindow';
 import GameBoardMenu from './GameBoardMenu';
 
-const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
+const GameBoard = ({ rows, columns, infiniteGameBoard }: { rows: number, columns: number, infiniteGameBoard: boolean }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
     const [gameRunning, setGameRunning] = useState<boolean>(false);
 
@@ -31,7 +31,7 @@ const GameBoard = ({ rows, columns }: { rows: number, columns: number }) => {
     };
 
     const handleGetNextState = () => {
-        setCellMatrix((current) => getNextCellMatrixState(current));
+        setCellMatrix((current) => getNextCellMatrixState(current, infiniteGameBoard));
     };
 
     const handleRandomizeState = () => {

@@ -15,7 +15,11 @@ const MainMenu = () => {
     const [infiniteGameBoard, setInfiniteGameBoard] = useState<boolean>(false);
 
     if (startGame) {
-        return <GameBoard rows={gameBoardSize.rows} columns={gameBoardSize.columns} />;
+        return <GameBoard
+            rows={gameBoardSize.rows}
+            columns={gameBoardSize.columns}
+            infiniteGameBoard={infiniteGameBoard}
+        />;
     }
 
     const handleStartGame = () => {
@@ -37,7 +41,7 @@ const MainMenu = () => {
                 <Button text="Start game" color="blue" onClick={handleStartGame} />
             </div>
             <div className="flex py-2 px-2">
-                <div className="pe-1">
+                <div className="pe-1 w-1/3">
                     <NumberInput
                         value={gameBoardSize.rows}
                         label="Rows"
@@ -45,7 +49,7 @@ const MainMenu = () => {
                         onChange={handleGameBoardSizeChange}
                     />
                 </div>
-                <div className="px-1">
+                <div className="px-1 w-1/3">
                     <NumberInput
                         value={gameBoardSize.columns}
                         label="Columns"
@@ -53,7 +57,7 @@ const MainMenu = () => {
                         onChange={handleGameBoardSizeChange}
                     />
                 </div>
-                <div className="ps-1">
+                <div className="ps-1 w-1/3">
                     <CheckBoxInput
                         checked={infiniteGameBoard}
                         label="Infinite board"
