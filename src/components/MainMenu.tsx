@@ -2,7 +2,7 @@ import { useState } from 'react';
 import GameLogo from './GameLogo';
 import Button from './Button';
 import GameBoard from './GameBoard';
-import NumberInput from './Input';
+import NumberInput from './NumberInput';
 import { GameBoardSize } from '../types/game';
 
 const MainMenu = () => {
@@ -23,17 +23,14 @@ const MainMenu = () => {
     };
 
     const handleGameBoardSizeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.name === 'rows') {
-            setGameBoardSize({ ...gameBoardSize, rows: parseInt(event.target.value) });
-        } else {
-            setGameBoardSize({ ...gameBoardSize, columns: parseInt(event.target.value) });
-        }
+        const newValue: number | string = event.target.value ? parseInt(event.target.value) : '';
+        setGameBoardSize({ ...gameBoardSize, [event.target.name]: newValue });
     };
 
     return <div className="w-full h-2/3 md:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm">
-        <h1 className="font-bold text-xl py-1">Game of Life</h1>
+        <h1 className="font-bold text-xl py-3 text-blue-600">Game of Life</h1>
         <GameLogo />
-        <div className="py-2">
+        <div className="pt-4 pb-2">
             <Button text="Start game" color="blue" onClick={handleStartGame} />
             <NumberInput
                 value={gameBoardSize.rows}
