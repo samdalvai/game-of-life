@@ -3,7 +3,7 @@ import { ChildrenProps } from '../types/components';
 import { CallBack } from '../types/callbacks';
 
 function ZoomableWindow({ children }: { children: ChildrenProps }) {
-    const [zoom, setZoom] = useState<number>(1);
+    const [zoom, setZoom] = useState<number>(0.5);
 
     const handleZoomIn = () => {
         setZoom(zoom + 0.05);
