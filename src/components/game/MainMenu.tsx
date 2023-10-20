@@ -13,7 +13,7 @@ const MainMenu = () => {
 
     function getDefaultGameBoardSize(): GameBoardSize {
         if (window.innerWidth <= 640) {
-            return { rows: 50, columns: 40 };
+            return { rows: 40, columns: 25 };
         }
 
         if (window.innerWidth <= 768) {
