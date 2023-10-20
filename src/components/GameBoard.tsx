@@ -43,7 +43,7 @@ const GameBoard = ({ rows, columns, infiniteGameBoard, onBack }: { rows: number,
         <div className="flex justify-center">
             <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         </div>
-        <ZoomableWindow>
+        <ZoomableWindow zoomEnabled={!gameRunning}>
             <CellMatrixField cellMatrix={cellMatrix} onCellClick={handleCellClick} />
         </ZoomableWindow>
         <GameBoardMenu

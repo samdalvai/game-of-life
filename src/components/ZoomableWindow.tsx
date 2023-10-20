@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ChildrenProps } from '../types/components';
 import { CallBack } from '../types/callbacks';
 
-function ZoomableWindow({ children }: { children: ChildrenProps }) {
+function ZoomableWindow({ children, zoomEnabled }: { children: ChildrenProps, zoomEnabled: boolean }) {
     const [zoom, setZoom] = useState<number>(0.5);
 
     const handleZoomIn = () => {
@@ -14,6 +14,10 @@ function ZoomableWindow({ children }: { children: ChildrenProps }) {
     };
 
     const ZoomButton = ({ onClick, sign }: { sign: '+' | '-', onClick: CallBack }) => {
+        if (!zoomEnabled) {
+            return null;
+        }
+        
         return <button
             className="flex items-center justify-center w-8 h-8 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2 border border-black"
             onClick={onClick}
