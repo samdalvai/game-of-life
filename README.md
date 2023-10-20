@@ -23,3 +23,7 @@ To run the unit tests use the following command
 ```
 yarn test
 ```
+
+# Application demo
+
+A working demo of the application of this web app is available [here](https://game-of-life-steel-chi.vercel.app/).
