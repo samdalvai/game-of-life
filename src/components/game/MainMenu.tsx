@@ -8,11 +8,20 @@ import CheckBoxInput from '../core/CheckBoxInput';
 
 const MainMenu = () => {
     const [startGame, setStartGame] = useState<boolean>(false);
-    const [gameBoardSize, setGameBoardSize] = useState<GameBoardSize>({
-        rows: 40,
-        columns: 60
-    });
+    const [gameBoardSize, setGameBoardSize] = useState<GameBoardSize>(getDefaultGameBoardSize());
     const [infiniteGameBoard, setInfiniteGameBoard] = useState<boolean>(false);
+
+    function getDefaultGameBoardSize(): GameBoardSize {
+        if (window.innerWidth <= 640) {
+            return { rows: 50, columns: 40 };
+        }
+
+        if (window.innerWidth <= 768) {
+            return { rows: 40, columns: 50 };
+        }
+
+        return { rows: 40, columns: 70 };
+    }
 
     if (startGame) {
         return <GameBoard
