@@ -1,6 +1,6 @@
 # Game of Life
 
-A React version of the Game of Life with Typescript, Vite and Tailwind CSS.
+A React version of the "Game of Life" with Typescript, Vite and Tailwind CSS.
 
 # How to run
 
