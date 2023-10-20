@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import GameLogo from './GameLogo';
-import Button from './Button';
+import GameLogo from '../core/GameLogo';
+import Button from '../core/Button';
 import GameBoard from './GameBoard';
-import NumberInput from './NumberInput';
-import { GameBoardSize } from '../types/game';
-import CheckBoxInput from './CheckBoxInput';
+import NumberInput from '../core/NumberInput';
+import { GameBoardSize } from '../../types/game';
+import CheckBoxInput from '../core/CheckBoxInput';
 
 const MainMenu = () => {
     const [startGame, setStartGame] = useState<boolean>(false);

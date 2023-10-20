@@ -1,4 +1,4 @@
-import MainMenu from './components/MainMenu';
+import MainMenu from './components/game/MainMenu';
 
 function App() {
   return (

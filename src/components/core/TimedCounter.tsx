@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { CallBack } from '../types/callbacks';
+import { CallBack } from '../../types/callbacks';
 
 const TimedCounter = ({ interval, onCount }: { interval: number, onCount: CallBack}) => {
   useEffect(() => {

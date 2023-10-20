@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import { CellMatrix, CellState, Coordinates } from '../types/game';
-import { initializeCellMatrix } from '../core/game';
-import { getNextCellMatrixState } from '../core/rules';
-import TimedCounter from './TimedCounter';
-import CellMatrixField from './CellMatrixField';
-import ZoomableWindow from './ZoomableWindow';
+import { CellMatrix, CellState, Coordinates } from '../../types/game';
+import { initializeCellMatrix } from '../../functions/game';
+import { getNextCellMatrixState } from '../../functions/rules';
+import TimedCounter from '../core/TimedCounter';
+import CellMatrixField from '../cells/CellMatrixField';
+import ZoomableWindow from '../core/ZoomableWindow';
 import GameBoardMenu from './GameBoardMenu';
-import { CallBack } from '../types/callbacks';
+import { CallBack } from '../../types/callbacks';
 
 const GameBoard = ({ rows, columns, infiniteGameBoard, onBack }: { rows: number, columns: number, infiniteGameBoard: boolean, onBack: CallBack }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));

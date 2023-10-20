@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { ChildrenProps } from '../types/components';
-import { CallBack } from '../types/callbacks';
+import { ChildrenProps } from '../../types/components';
+import { CallBack } from '../../types/callbacks';
 
 function ZoomableWindow({ children, zoomEnabled }: { children: ChildrenProps, zoomEnabled: boolean }) {
     const [zoom, setZoom] = useState<number>(0.5);

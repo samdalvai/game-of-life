@@ -1,7 +1,7 @@
 import { expect, test } from 'vitest';
-import { getCellNextState, getNextCellMatrixState } from '../core/rules';
+import { getCellNextState, getNextCellMatrixState } from '../functions/rules';
 import { CellMatrix } from '../types/game';
-import { initializeCellMatrix } from '../core/game';
+import { initializeCellMatrix } from '../functions/game';
 
 test('(Rule 1) Any live cell with two live neighbours lives on to the next generation.', () => {
     const CellMatrix: CellMatrix = [

@@ -1,6 +1,6 @@
-import Button from './Button';
-import { BackIcon, DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../icons/Icons';
-import { CallBack } from '../types/callbacks';
+import Button from '../core/Button';
+import { BackIcon, DeleteIcon, NextIcon, PauseIcon, PlayIcon, UpdateIcon } from '../../icons/Icons';
+import { CallBack } from '../../types/callbacks';
 
 const GameBoardMenu = ({ gameRunning, onRun, onReset, onNext, onRandomize, onBack }: { gameRunning: boolean, onRun: CallBack, onReset: CallBack, onNext: CallBack, onRandomize: CallBack, onBack: CallBack }) => {
     return <div className="pt-3 w-full flex flex-col md:flex-row">

@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { CallBack } from '../types/callbacks';
-import { ButtonColor } from '../types/components';
+import { CallBack } from '../../types/callbacks';
+import { ButtonColor } from '../../types/components';
 
 const Button = ({ text, icon, color, onClick }: { text?: string, icon?: ReactNode, color: ButtonColor, onClick: CallBack }) => {
     const buttonColors = {
