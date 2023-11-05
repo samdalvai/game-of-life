@@ -1,4 +1,3 @@
-import { expect, test } from 'vitest';
 import { getCellNextState, getNextCellMatrixState } from '../functions/rules';
 import { CellMatrix } from '../types/game';
 import { initializeCellMatrix } from '../functions/game';

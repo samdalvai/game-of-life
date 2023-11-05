@@ -1,4 +1,3 @@
-import { expect, test } from 'vitest';
 import { initializeCellMatrix, getCellByCoordinates, getCellNeighboursAliveCount } from '../functions/game';
 import { Cell, CellMatrix } from '../types/game';
 
