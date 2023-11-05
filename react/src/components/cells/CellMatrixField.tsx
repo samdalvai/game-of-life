@@ -1,5 +1,5 @@
 import { CoordinatesCallBack } from '../../types/callbacks';
-import { Cell, CellMatrix } from '../../types/game';
+import { Cell, CellMatrix } from 'game-of-life-core';
 import CellSquare from './CellSquare';
 
 const CellMatrixField = ({ cellMatrix, onCellClick }: { cellMatrix: CellMatrix, onCellClick: CoordinatesCallBack }) => {

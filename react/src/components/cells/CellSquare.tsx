@@ -1,5 +1,5 @@
 import { CallBack } from '../../types/callbacks';
-import { Cell } from '../../types/game';
+import { Cell } from 'game-of-life-core';
 
 const CellSquare = ({cell, onClick}: {cell: Cell, onClick: CallBack}) => {
     const cellColors = {

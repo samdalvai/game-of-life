@@ -10,8 +10,3 @@ export interface Coordinates {
 }
 
 export type CellMatrix = Cell[][]
-
-export interface GameBoardSize {
-    rows: number,
-    columns: number
-}

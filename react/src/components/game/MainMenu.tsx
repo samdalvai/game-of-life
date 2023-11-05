@@ -3,7 +3,7 @@ import GameLogo from '../core/GameLogo';
 import Button from '../core/Button';
 import GameBoard from './GameBoard';
 import NumberInput from '../core/NumberInput';
-import { GameBoardSize } from '../../types/game';
+import { GameBoardSize } from '../../types/components';
 import CheckBoxInput from '../core/CheckBoxInput';
 
 const MainMenu = () => {
