@@ -1,0 +1,9 @@
+{
+  "name": "game-of-life-core",
+  "version": "1.0.0",
+  "main": "index.ts",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}

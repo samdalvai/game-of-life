@@ -1,0 +1,1 @@
+export { initializeCellMatrix } from './functions/game';

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { CellMatrix, CellState, Coordinates } from '../../types/game';
-import { initializeCellMatrix } from '../../functions/game';
+//import { initializeCellMatrix } from '../../functions/game';
+import { initializeCellMatrix } from 'game-of-life-core';
 import { getNextCellMatrixState } from '../../functions/rules';
 import TimedCounter from '../core/TimedCounter';
 import CellMatrixField from '../cells/CellMatrixField';
