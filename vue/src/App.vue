@@ -7,8 +7,6 @@ const cell = ref<Cell>({ state: 'alive' });
 
 const handleClick = () => {
   const newState = cell.value.state === 'alive' ? 'dead' : 'alive';
-  console.log("current state: ", cell.value)
-  console.log("new state: ", newState)
   cell.value = { state: newState };
 };
 </script>
