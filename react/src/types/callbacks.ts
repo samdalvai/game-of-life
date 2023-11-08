@@ -1,4 +1,4 @@
-import { Cell, Coordinates } from './game';
+import { Cell, Coordinates } from 'game-of-life-core';
 
 export type CallBack = () => void
 
