@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import { defineProps } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 import { Cell } from 'game-of-life-core';
 
 const props = defineProps<{ cell: Cell }>();
+
+const emit = defineEmits(['click']);
+
+const emitClick = () => {
+  emit('click', () => null);
+};
 
 const cellColors = {
   alive: 'bg-black',
@@ -13,5 +19,5 @@ const cellClass = `w-10 h-10 flex-shrink-0 border-solid border border-slate-500 
 </script>
 
 <template>
-  <div :class="cellClass" />
+  <div :class="cellClass" @click="emitClick"></div>
 </template>
