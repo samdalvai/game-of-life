@@ -1,13 +1,6 @@
-<script lang="ts">
-import { ref, defineComponent } from 'vue';
+<script lang="ts" setup>
 import CellSquare from './components/cells/CellSquare.vue';
 
-export default defineComponent({
-  name: 'App',
-  components: {
-    CellSquare
-  }
-});
 </script>
 
 <template>
