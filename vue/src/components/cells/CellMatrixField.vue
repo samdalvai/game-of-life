@@ -3,18 +3,20 @@ import { defineProps, defineEmits, computed } from 'vue';
 import CellSquare from './CellSquare.vue';
 import { CellMatrix, Coordinates } from 'game-of-life-core';
 
+// TODO: add emit to props
 const props = defineProps<{ cellMatrix: CellMatrix }>();
 
-const handleClick = (coordinates: Coordinates) => {
-  console.log("clicked cell: ", coordinates)
-};
+const emit = defineEmits(['cellClick']);
 
+const emitCellClick = (coordinates: Coordinates) => {
+  emit('cellClick', coordinates);
+};
 </script>
 
 <template>
     <div class="border-2 border-black">
         <div class="flex justify-center" v-for="(cellRow, xAxis) in props.cellMatrix" :key="'row-' + xAxis">
-            <CellSquare v-for="(cell, yAxis) in cellRow" :key="'cell-' + yAxis" :cell="cell" @click="handleClick({ xAxis: xAxis, yAxis: yAxis })" />
+            <CellSquare v-for="(cell, yAxis) in cellRow" :key="'cell-' + yAxis" :cell="cell" @click="emitCellClick({ xAxis: xAxis, yAxis: yAxis })" />
         </div>
     </div>
 </template>
