@@ -15,14 +15,13 @@ const cellColors = {
   dead: 'bg-white'
 };
 
+const cellBackground = {
+  alive: 'hover:bg-red-400',
+  dead: 'hover:bg-green-500'
+};
+
 const cellClass = computed(() => {
-  const baseClass = 'w-10 h-10 flex-shrink-0 border-solid border border-slate-500 rounded-sm cursor-pointer ' + cellColors[props.cell.state];
-
-  if (props.cell.state === 'alive') {
-    return baseClass + ' hover:bg-red-400';
-  }
-
-  return baseClass + ' hover:bg-green-500';
+  return `w-10 h-10 flex-shrink-0 border-solid border border-slate-500 rounded-sm cursor-pointer ${cellColors[props.cell.state]} ${cellBackground[props.cell.state]}`;
 });
 </script>
 
