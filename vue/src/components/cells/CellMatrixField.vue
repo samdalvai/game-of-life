@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import { defineProps, defineEmits, computed } from 'vue';
+import { defineProps, defineEmits } from 'vue';
 import CellSquare from './CellSquare.vue';
 import { CellMatrix, Coordinates } from 'game-of-life-core';
 
-// TODO: add emit to props
 const props = defineProps<{ cellMatrix: CellMatrix }>();
 
 const emit = defineEmits(['cellClick']);
