@@ -1,24 +1,23 @@
-/*import { useEffect } from 'react';
-import { CallBack } from '../../types/callbacks';
+<script lang="ts" setup>
+import { onMounted, defineProps, defineEmits } from 'vue';
 
-const TimedCounter = ({ interval, onCount }: { interval: number, onCount: CallBack}) => {
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-        onCount();
-    }, interval);
+const props = defineProps<{ interval: number }>();
 
-    return () => clearInterval(intervalId);
-  }, [interval, onCount]);
+const emit = defineEmits(['count']);
 
-  return null;
+const emitCount = () => {
+  emit('count', null);
 };
 
-export default TimedCounter;
+const runCounter = () => {
+  const intervalId = setInterval(() => {
+    emitCount();
+  }, props.interval);
 
-<script setup>
+  return () => clearInterval(intervalId);
+};
 
+onMounted(() => {
+  runCounter();
+});
 </script>
-
-<template>
-  <div/>
-</template>

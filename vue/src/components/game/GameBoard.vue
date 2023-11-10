@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits } from 'vue';
+import { CellMatrix, initializeCellMatrix, getNextCellMatrixState, Coordinates, CellState } from 'game-of-life-core';
 import CellMatrixField from '../cells/CellMatrixField.vue';
 import Button from '../core/Button.vue';
 import NextIcon from '../icons/NextIcon.vue';
 import PlayIcon from '../icons/PlayIcon.vue';
-import { CellMatrix, initializeCellMatrix, getNextCellMatrixState, Coordinates, CellState } from 'game-of-life-core';
+import TimedCounter from '../core/TimedCounter.vue';
 
 const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean }>();
+
+const gameRunning = ref(false);
 
 const emit = defineEmits(['back']);
 
@@ -26,6 +29,10 @@ const handleCellClick = (coordinates: Coordinates) => {
   cellMatrix.value = updatedCellMatrix;
 };
 
+const handleRunGame = () => {
+  gameRunning.value = !gameRunning.value;
+};
+
 const handleGetNextState = () => {
   cellMatrix.value = getNextCellMatrixState(cellMatrix.value, props.infiniteGameBoard);
 };
@@ -37,11 +44,12 @@ const handleGetNextState = () => {
             <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         </div>
         <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick"/>
-        <Button :text="'Run'" :color="'green'" @click="handleGetNextState">
+        <Button :text="'Run'" :color="'green'" @click="handleRunGame">
           <PlayIcon />
         </Button>
         <Button :text="'Next'" :color="'blue'" @click="handleGetNextState">
           <NextIcon />
         </Button>
     </div>
+    <TimedCounter v-if="gameRunning" :interval="100" @count="handleGetNextState" />
 </template>
