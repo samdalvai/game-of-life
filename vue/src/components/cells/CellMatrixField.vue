@@ -10,6 +10,7 @@ const emit = defineEmits(['cellClick']);
 const emitCellClick = (coordinates: Coordinates) => {
   emit('cellClick', coordinates);
 };
+
 </script>
 
 <template>
