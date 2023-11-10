@@ -17,7 +17,7 @@ const buttonColors = {
   red: 'bg-red-500 hover:bg-red-600 focus:ring-red-800',
   indigo: 'bg-indigo-500 hover:bg-indigo-600 focus:ring-indigo-800',
   orange: 'bg-orange-500 hover:bg-orange-600 focus:ring-orange-800',
-  yellow: 'bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-700',
+  yellow: 'bg-yellow-400 hover:bg-yellow-500 focus:ring-yellow-700'
 };
 
 const buttonClass = computed(() => {
@@ -26,7 +26,7 @@ const buttonClass = computed(() => {
 </script>
 
 <template>
-  <button :class="buttonClass">
+  <button :class="buttonClass" @click="emitClick">
         <span className="flex justify-center items-center">
             {{ props.text }}
         </span>

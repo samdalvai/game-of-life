@@ -31,5 +31,6 @@ const handleCellClick = (coordinates: Coordinates) => {
             <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         </div>
         <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick"/>
+        <Button :text="Next" :color="blue" />
     </div>;
 </template>
