@@ -2,7 +2,7 @@ import { ReactNode } from 'react';
 import { CallBack } from '../../types/callbacks';
 import { ButtonColor } from '../../types/components';
 
-const Button = ({ text, icon, color, onClick }: { text?: string, icon?: ReactNode, color: ButtonColor, onClick: CallBack }) => {
+const Button = ({ text, icon, color, onClick }: { text: string, icon?: ReactNode, color: ButtonColor, onClick: CallBack }) => {
     const buttonColors = {
         blue: 'bg-blue-500 hover:bg-blue-600 focus:ring-blue-800',
         gray: 'bg-gray-500 hover:bg-gray-600 focus:ring-gray-800',
@@ -15,7 +15,7 @@ const Button = ({ text, icon, color, onClick }: { text?: string, icon?: ReactNod
 
     return <button className={`border border-black focus:ring-1 px-4 py-2 w-full text-sm font-bold text-white rounded ${buttonColors[color]}`} onClick={onClick}>
         <span className="flex justify-center items-center">
-            <span className={text ? 'pe-1' : ''}>{icon}</span>
+            <span className="pe-1">{icon}</span>
             {text}
         </span>
     </button>;

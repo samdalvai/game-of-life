@@ -2,6 +2,7 @@
 import { ref, defineProps, defineEmits } from 'vue';
 import CellMatrixField from '../cells/CellMatrixField.vue';
 import Button from '../core/Button.vue';
+import NextIcon from '../icons/NextIcon.vue';
 import { CellMatrix, initializeCellMatrix, getNextCellMatrixState, Coordinates, CellState } from 'game-of-life-core';
 
 const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean }>();
@@ -35,6 +36,8 @@ const handleGetNextState = () => {
             <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         </div>
         <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick"/>
-        <Button :text="'Next'" :color="'blue'" @click="handleGetNextState"/>
+        <Button :text="'Next'" :color="'blue'" @click="handleGetNextState">
+          <NextIcon />
+        </Button>
     </div>
 </template>
