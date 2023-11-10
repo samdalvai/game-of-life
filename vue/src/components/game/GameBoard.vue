@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref, defineProps, defineEmits } from 'vue';
 import CellMatrixField from '../cells/CellMatrixField.vue';
+import Button from '../core/Button.vue';
 import { CellMatrix, initializeCellMatrix, Coordinates, CellState } from 'game-of-life-core';
 
 const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean }>();
