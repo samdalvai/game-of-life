@@ -11,7 +11,7 @@ import BackIcon from '../icons/BackIcon.vue';
 const props = defineProps<{ gameRunning: boolean}>();
 
 const runButtonText = computed(() => {
-  return props.gameRunning ? 'Run' : 'Pause';
+  return !props.gameRunning ? 'Run' : 'Pause';
 });
 
 const runButtonColor = computed(() => {
