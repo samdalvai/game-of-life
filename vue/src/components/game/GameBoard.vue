@@ -3,6 +3,7 @@ import { ref, defineProps, defineEmits } from 'vue';
 import { CellMatrix, initializeCellMatrix, getNextCellMatrixState, Coordinates, CellState } from 'game-of-life-core';
 import CellMatrixField from '../cells/CellMatrixField.vue';
 import GameBoardMenu from './GameBoardMenu.vue';
+import ZoomableWindow from '../core/ZoomableWindow.vue';
 import TimedCounter from '../core/TimedCounter.vue';
 
 const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean }>();
@@ -50,9 +51,11 @@ const handleRandomizeState = () => {
     <div className="flex justify-center">
       <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
     </div>
-    <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick" />
-    <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState"
-      @next="handleGetNextState" @randomize="handleRandomizeState" @back="emitBack"/>
+    <ZoomableWindow :game-running="gameRunning">
+      <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick" />
+    </ZoomableWindow>
+    <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState"
+      @randomize="handleRandomizeState" @back="emitBack" />
   </div>
   <TimedCounter v-if="gameRunning" :interval="100" @count="handleGetNextState" />
 </template>
