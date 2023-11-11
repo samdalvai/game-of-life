@@ -2,6 +2,7 @@
 import { ref } from 'vue';
 import GameBoard from './GameBoard.vue';
 import Button from '../core/Button.vue';
+import NumberInput from '../core/NumberInput.vue';
 import { GameBoardSize } from '@/types/components';
 
 const startGame = ref<boolean>(false);
@@ -26,6 +27,11 @@ const handleStartGame = () => {
   }
 };
 
+const handleGameBoardSizeChange = (event: any) => {
+  const newValue: number | string = event.target.value ? parseInt(event.target.value) : '';
+  gameBoardSize.value = { ...gameBoardSize.value, [event.target.name]: newValue };
+};
+
 </script>
 
 <template>
@@ -39,10 +45,10 @@ const handleStartGame = () => {
             </div>
             <div class="flex py-2 px-2">
                 <div class="pe-1 w-1/3">
-
+                    <NumberInput :label="'Rows'" :inputName="'rows'" :inputValue="gameBoardSize.rows" @change="handleGameBoardSizeChange" />
                 </div>
                 <div class="px-1 w-1/3">
-
+                    <NumberInput :label="'Columns'" :inputName="'columns'" :inputValue="gameBoardSize.columns" @change="handleGameBoardSizeChange" />
                 </div>
                 <div class="ps-1 w-1/3">
 
