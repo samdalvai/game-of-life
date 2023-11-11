@@ -5,6 +5,8 @@ import PlayIcon from '../icons/PlayIcon.vue';
 import PauseIcon from '../icons/PauseIcon.vue';
 import DeleteIcon from '../icons/DeleteIcon.vue';
 import NextIcon from '../icons/NextIcon.vue';
+import UpdateIcon from '../icons/UpdateIcon.vue';
+import BackIcon from '../icons/BackIcon.vue';
 
 const props = defineProps<{ gameRunning: boolean}>();
 
@@ -13,10 +15,10 @@ const runButtonText = computed(() => {
 });
 
 const runButtonColor = computed(() => {
-  return props.gameRunning ? 'green' : 'yellow';
+  return !props.gameRunning ? 'green' : 'yellow';
 });
 
-const emit = defineEmits(['run', 'reset', 'next']);
+const emit = defineEmits(['run', 'reset', 'next', 'randomize', 'back']);
 
 const emitRun = () => {
   emit('run', null);
@@ -30,6 +32,14 @@ const emitNext = () => {
   emit('next', null);
 };
 
+const emitRandomize = () => {
+  emit('randomize', null);
+};
+
+const emitBack = () => {
+  emit('back', null);
+};
+
 </script>
 
 <template>
@@ -37,7 +47,7 @@ const emitNext = () => {
         <div className="w-full md:w-3/5 flex md:pe-1">
             <div className="pe-1 w-1/3">
                 <Button :text="runButtonText" :color="runButtonColor" @click="emitRun">
-                    <PlayIcon v-if="gameRunning"/>
+                    <PlayIcon v-if="!gameRunning"/>
                     <PauseIcon v-else/>
                 </Button>
             </div>
@@ -54,10 +64,14 @@ const emitNext = () => {
         </div>
         <div className="w-full md:w-2/5 flex pt-2 md:ps-1 md:pt-0">
             <div className="pe-1 w-1/2">
-
+                <Button :text="'Random'" :color="'orange'" @click="emitRandomize">
+                    <UpdateIcon />
+                </Button>
             </div>
             <div className="ps-1 w-1/2">
-
+                <Button :text="'Back'" :color="'blue'" @click="emitBack">
+                    <BackIcon />
+                </Button>
             </div>
         </div>
     </div>

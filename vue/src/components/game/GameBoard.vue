@@ -39,6 +39,10 @@ const handleResetState = () => {
 const handleGetNextState = () => {
   cellMatrix.value = getNextCellMatrixState(cellMatrix.value, props.infiniteGameBoard);
 };
+
+const handleRandomizeState = () => {
+  cellMatrix.value = initializeCellMatrix(props.rows, props.columns, true);
+};
 </script>
 
 <template>
@@ -47,7 +51,8 @@ const handleGetNextState = () => {
       <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
     </div>
     <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick" />
-    <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState" />
+    <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState"
+      @next="handleGetNextState" @randomize="handleRandomizeState" @back="emitBack"/>
   </div>
   <TimedCounter v-if="gameRunning" :interval="100" @count="handleGetNextState" />
 </template>
