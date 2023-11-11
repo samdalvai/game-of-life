@@ -51,7 +51,7 @@ const handleRandomizeState = () => {
     <div className="flex justify-center">
       <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
     </div>
-    <ZoomableWindow :game-running="gameRunning">
+    <ZoomableWindow :zoom-enabled="!gameRunning">
       <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick" />
     </ZoomableWindow>
     <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState"
