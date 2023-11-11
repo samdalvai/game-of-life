@@ -28,7 +28,7 @@ const buttonClass = computed(() => {
 <template>
   <button :class="buttonClass" @click="emitClick">
         <span className="flex justify-center items-center">
-            <span class="pe-1"><slot>Icon</slot></span>
+            <span class="pe-1"><slot></slot></span>
             {{ props.text }}
         </span>
     </button>
