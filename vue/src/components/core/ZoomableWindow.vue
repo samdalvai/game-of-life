@@ -29,12 +29,12 @@ const handleZoomOut = () => {
         <div class="flex absolute bottom-2 right-2">
             <button
                 class="flex items-center justify-center w-8 h-8 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2 border border-black"
-                @click="handleZoomIn" v-if="zoomEnabled">
+                @click="handleZoomIn" v-if="props.zoomEnabled">
                 <span class="flex items-center text-xl pb-1">+</span>
             </button>
             <button
                 class="flex items-center justify-center w-8 h-8 bg-gray-500 hover:bg-gray-600 text-white px-2 rounded ml-2 border border-black"
-                @click="handleZoomOut" v-if="zoomEnabled">
+                @click="handleZoomOut" v-if="props.zoomEnabled">
                 <span class="flex items-center text-xl pb-1">-</span>
             </button>
         </div>
