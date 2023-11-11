@@ -47,7 +47,7 @@ const handleGetNextState = () => {
       <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
     </div>
     <CellMatrixField :cellMatrix="cellMatrix" @cellClick="handleCellClick" />
-    <GameBoardMenu @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState" />
+    <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState" />
   </div>
   <TimedCounter v-if="gameRunning" :interval="100" @count="handleGetNextState" />
 </template>

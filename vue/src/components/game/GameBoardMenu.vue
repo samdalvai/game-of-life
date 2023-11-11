@@ -1,9 +1,20 @@
 <script lang="ts" setup>
-import { ref, defineProps, defineEmits } from 'vue';
+import { computed, defineProps, defineEmits } from 'vue';
 import Button from '../core/Button.vue';
 import PlayIcon from '../icons/PlayIcon.vue';
+import PauseIcon from '../icons/PauseIcon.vue';
 import DeleteIcon from '../icons/DeleteIcon.vue';
 import NextIcon from '../icons/NextIcon.vue';
+
+const props = defineProps<{ gameRunning: boolean}>();
+
+const runButtonText = computed(() => {
+  return props.gameRunning ? 'Run' : 'Pause';
+});
+
+const runButtonColor = computed(() => {
+  return props.gameRunning ? 'green' : 'yellow';
+});
 
 const emit = defineEmits(['run', 'reset', 'next']);
 
@@ -25,8 +36,9 @@ const emitNext = () => {
     <div className="pt-3 w-full flex flex-col md:flex-row">
         <div className="w-full md:w-3/5 flex md:pe-1">
             <div className="pe-1 w-1/3">
-                <Button :text="'Run'" :color="'green'" @click="emitRun">
-                    <PlayIcon />
+                <Button :text="runButtonText" :color="runButtonColor" @click="emitRun">
+                    <PlayIcon v-if="gameRunning"/>
+                    <PauseIcon v-else/>
                 </Button>
             </div>
             <div className="px-1 w-1/3">
