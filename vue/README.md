@@ -1,5 +1,7 @@
 # game-of-life
 
+A Vue version of Conway's "Game of Life" with Typescript, Vite and Tailwind CSS.
+
 ## Project setup
 ```
 yarn install
@@ -7,7 +9,7 @@ yarn install
 
 ### Compiles and hot-reloads for development
 ```
-yarn serve
+yarn dev
 ```
 
 ### Compiles and minifies for production
