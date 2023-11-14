@@ -5,11 +5,13 @@ import GameBoard from './GameBoard';
 import NumberInput from '../core/NumberInput';
 import { GameBoardSize } from '../../types/components';
 import CheckBoxInput from '../core/CheckBoxInput';
+import SliderInput from '../core/SliderInput';
 
 const MainMenu = () => {
     const [startGame, setStartGame] = useState<boolean>(false);
     const [gameBoardSize, setGameBoardSize] = useState<GameBoardSize>(getDefaultGameBoardSize());
     const [infiniteGameBoard, setInfiniteGameBoard] = useState<boolean>(false);
+    const [updateSpeed, setUpdateSpeed] = useState<number>(100);
 
     function getDefaultGameBoardSize(): GameBoardSize {
         if (window.innerWidth <= 640) {
@@ -42,6 +44,10 @@ const MainMenu = () => {
         setGameBoardSize({ ...gameBoardSize, [event.target.name]: newValue });
     };
 
+    const updateSpeedChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUpdateSpeed(parseInt(event.target.value));
+    };
+
     return <div className="w-full h-2/3 lg:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm border border-black">
         <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
         <GameLogo />
@@ -50,7 +56,7 @@ const MainMenu = () => {
                 <Button text="Start game" color="blue" onClick={handleStartGame} />
             </div>
             <div className="flex py-2 px-2">
-                <div className="pe-1 w-1/3">
+                <div className="pe-1 w-1/2">
                     <NumberInput
                         value={gameBoardSize.rows}
                         label="Rows"
@@ -58,7 +64,7 @@ const MainMenu = () => {
                         onChange={handleGameBoardSizeChange}
                     />
                 </div>
-                <div className="px-1 w-1/3">
+                <div className="ps-1 w-1/2">
                     <NumberInput
                         value={gameBoardSize.columns}
                         label="Columns"
@@ -66,7 +72,17 @@ const MainMenu = () => {
                         onChange={handleGameBoardSizeChange}
                     />
                 </div>
-                <div className="ps-1 w-1/3">
+            </div>
+            <div className="flex py-2 px-2">
+                <div className="pe-1 w-1/2">
+                    <SliderInput
+                        value={updateSpeed}
+                        label="Update speed"
+                        name="update-speed"
+                        onChange={updateSpeedChange}
+                    />
+                </div>
+                <div className="ps-1 w-1/2">
                     <CheckBoxInput
                         checked={infiniteGameBoard}
                         label="Infinite board"
