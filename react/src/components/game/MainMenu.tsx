@@ -30,6 +30,7 @@ const MainMenu = () => {
             rows={gameBoardSize.rows}
             columns={gameBoardSize.columns}
             infiniteGameBoard={infiniteGameBoard} onBack={() => setStartGame(false)}
+            updateSpeed={updateSpeed}
         />;
     }
 

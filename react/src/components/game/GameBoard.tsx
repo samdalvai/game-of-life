@@ -6,7 +6,7 @@ import ZoomableWindow from '../core/ZoomableWindow';
 import GameBoardMenu from './GameBoardMenu';
 import { CallBack } from '../../types/callbacks';
 
-const GameBoard = ({ rows, columns, infiniteGameBoard, onBack }: { rows: number, columns: number, infiniteGameBoard: boolean, onBack: CallBack }) => {
+const GameBoard = ({ rows, columns, infiniteGameBoard, updateSpeed, onBack }: { rows: number, columns: number, infiniteGameBoard: boolean, updateSpeed: number, onBack: CallBack }) => {
     const [cellMatrix, setCellMatrix] = useState<CellMatrix>(initializeCellMatrix(rows, columns));
     const [gameRunning, setGameRunning] = useState<boolean>(false);
 
@@ -52,7 +52,7 @@ const GameBoard = ({ rows, columns, infiniteGameBoard, onBack }: { rows: number,
             onRandomize={handleRandomizeState} 
             onBack={onBack}
             />
-        {gameRunning && <TimedCounter interval={100} onCount={handleGetNextState} />}
+        {gameRunning && <TimedCounter interval={updateSpeed} onCount={handleGetNextState} />}
     </div >;
 };
 
