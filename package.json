@@ -1,0 +1,5 @@
+{
+    "scripts": {
+        "build": "cd core && yarn install && cd .. && cd react && tsc && vite build"
+    }
+}
