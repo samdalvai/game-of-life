@@ -50,7 +50,7 @@ const MainMenu = () => {
     };
 
     return <div className="w-full h-2/3 lg:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm border border-black">
-        <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
+        <h1 className="font-bold text-2xl py-3 text-blue-600">Game of Life - React</h1>
         <GameLogo />
         <div className="pt-4 pb-2">
             <div className="px-2">

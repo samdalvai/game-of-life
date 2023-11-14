@@ -48,7 +48,7 @@ const updateSpeedChange = (event: any) => {
     :infiniteGameBoard="infiniteGameBoard" :updateSpeed="updateSpeed" @back="() => startGame = false" />
   <div v-else
     class="w-full h-2/3 lg:w-1/2 rounded-md flex flex-col justify-center items-center bg-white shadow-sm border border-black">
-    <h1 class="font-bold text-2xl py-3 text-blue-600">Game of Life</h1>
+    <h1 class="font-bold text-2xl py-3 text-blue-600">Game of Life - Vue</h1>
     <GameLogo />
     <div class="pt-4 pb-2">
       <div class="px-2">
