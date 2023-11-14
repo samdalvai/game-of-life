@@ -1,16 +1,14 @@
 # Game of Life
 
-A React and Vue version of Conway's "Game of Life" with Typescript, Vite and Tailwind CSS.
+A React version of Conway's "Game of Life" with Typescript, Vite and Tailwind CSS.
 
 # How to run
 
-First install the projects dependencies with
+First install the project dependencies with
 
 ```
 yarn install
 ```
-Please install dependencies of `core/` project first.
-
 
 In order to run the project in development mode run
 
