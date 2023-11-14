@@ -6,7 +6,7 @@ import GameBoardMenu from './GameBoardMenu.vue';
 import ZoomableWindow from '../core/ZoomableWindow.vue';
 import TimedCounter from '../core/TimedCounter.vue';
 
-const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean }>();
+const props = defineProps<{ rows: number, columns: number, infiniteGameBoard: boolean, updateSpeed: number }>();
 
 const gameRunning = ref(false);
 
@@ -57,5 +57,5 @@ const handleRandomizeState = () => {
     <GameBoardMenu :game-running="gameRunning" @run="handleRunGame" @reset="handleResetState" @next="handleGetNextState"
       @randomize="handleRandomizeState" @back="emitBack" />
   </div>
-  <TimedCounter v-if="gameRunning" :interval="100" @count="handleGetNextState" />
+  <TimedCounter v-if="gameRunning" :interval="updateSpeed" @count="handleGetNextState" />
 </template>
