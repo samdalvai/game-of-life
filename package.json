@@ -1,7 +1,8 @@
 {
     "scripts": {
         "install": "cd core && yarn install && cd ../vue && yarn install && cd ../react && yarn install",
-        "build": "ls && vue-cli-service build",
+        "build:react": "cd react && yarn build",
+        "build:vue": "cd vue && yarn build",
         "dev:react": "cd react && yarn dev",
         "dev:vue": "cd vue && yarn dev"
     }
