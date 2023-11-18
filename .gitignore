@@ -4,3 +4,7 @@
 .idea
 .DS_Store
 
+*.lock
+node_modules
+dist
+
