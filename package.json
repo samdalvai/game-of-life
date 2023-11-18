@@ -1,6 +1,8 @@
 {
     "scripts": {
         "install": "cd core && yarn install && cd ../vue && yarn install && cd ../react && yarn install",
+        "install:react": "cd core && yarn install && cd ../react && yarn install",
+        "install:vue": "cd core && yarn install && cd ../vue && yarn install",
         "build:react": "cd react && yarn build",
         "build:vue": "cd vue && yarn build",
         "dev:react": "cd react && yarn dev",
