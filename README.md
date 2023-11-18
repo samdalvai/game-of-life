@@ -35,4 +35,8 @@ yarn test
 
 # Application demo
 
-A working demo of the application of this web app is available [here](https://game-of-life-steel-chi.vercel.app/).
+## React version
+Working demo available [here](https://game-of-life-ox2vatl04-samdalvai.vercel.app/).
+
+## Vue version
+Working demo available [here](https://game-of-life-htzoeders-samdalvai.vercel.app/).
